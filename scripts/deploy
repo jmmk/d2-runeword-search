@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 readonly TMP_DIR=$(mktemp -d /tmp/d2-runeword-search.XXXXX)
 readonly REPO=git@github.com:jmmk/d2-runeword-search.git
 readonly GIT="git -C $TMP_DIR"
 readonly COMMIT_MSG="Update to latest build"
 readonly DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-readonly MAKE="make -C $DIR/.."
+readonly PROJECT_DIR="$DIR/.."
+readonly MAKE="make -C $PROJECT_DIR"
+readonly NPM="npm --prefix $PROJECT_DIR"
 
 log() {
   echo "deploy: $1"
@@ -14,6 +17,9 @@ log() {
 main() {
   log "clean"
   $MAKE clean
+
+  log "npm install"
+  $NPM install
 
   log "compile"
   $MAKE
@@ -29,7 +35,7 @@ main() {
 
   log "Copy new files..."
   cp index.html "$TMP_DIR"
-  cp -r "$DIR/../target" "$TMP_DIR"
+  cp -r "$PROJECT_DIR/target" "$TMP_DIR"
 
   log "Commit: $COMMIT_MSG"
   $GIT add -A
