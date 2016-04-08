@@ -13213,9 +13213,7 @@ Elm.Main.make = function (_elm) {
    _U.list([$Html$Attributes.$class("container")]),
    _U.list([A2($Html.div,
    _U.list([$Html$Attributes.$class("content is-text-centered")]),
-   _U.list([A2($Html.p,
-   _U.list([]),
-   _U.list([$Html.text("Made with love for Beti")]))]))]))]));
+   _U.list([A2($Html.p,_U.list([]),_U.list([]))]))]))]));
    var renderHero = A2($Html.section,
    _U.list([$Html$Attributes.$class("hero")]),
    _U.list([A2($Html.div,
