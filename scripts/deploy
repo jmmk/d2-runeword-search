@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+readonly TMP_DIR=$(mktemp -d /tmp/d2-runeword-search.XXXXX)
+readonly REPO=git@github.com:jmmk/d2-runeword-search.git
+readonly GIT="git -C $TMP_DIR"
+readonly COMMIT_MSG="Update to latest build"
+readonly DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+readonly MAKE="make -C $DIR/.."
+
+log() {
+  echo "deploy: $1"
+}
+
+main() {
+  log "clean"
+  $MAKE clean
+
+  log "compile"
+  $MAKE
+
+  log "Clone $REPO"
+  git clone -q "$REPO" "$TMP_DIR"
+
+  log "Checkout gh-pages"
+  $GIT checkout -q gh-pages
+
+  log "Remove old files"
+  rm -rf "$TMP_DIR/*"
+
+  log "Copy new files..."
+  cp index.html "$TMP_DIR"
+  cp -r "$DIR/../target" "$TMP_DIR"
+
+  log "Commit: $COMMIT_MSG"
+  $GIT add -A
+  $GIT commit -q -m "$COMMIT_MSG"
+
+  log "Push gh-pages"
+  $GIT push -q origin gh-pages
+
+  log "Remove temp directory"
+  rm -rf "$TMP_DIR"
+}
+
+main "$@"
