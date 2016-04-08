@@ -31,7 +31,7 @@ main() {
   $GIT checkout -q gh-pages
 
   log "Remove old files"
-  rm -rf "$TMP_DIR/*"
+  rm -rf "$TMP_DIR"/*
 
   log "Copy new files..."
   cp index.html "$TMP_DIR"
