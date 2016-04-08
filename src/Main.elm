@@ -223,7 +223,7 @@ renderFooter =
             [ class "content is-text-centered" ]
             [ p
                 []
-                [ text "Made with love for Beti" ]
+                []
             ]
         ]
     ]
