@@ -14,12 +14,12 @@ for rw in runeword_list:
     is_one_eleven = rw['runeword-1.11'] == 'Yes'
     is_one_ten = rw['runeword-1.10'] == 'Yes'
     is_one_nine = rw['runeword-1.09'] == 'Yes'
-    if is_one_eleven:
-        patch = 'OneEleven'
+    if is_one_nine:
+        patch = 'OneNine'
     elif is_one_ten:
         patch = 'OneTen'
-    elif is_one_nine:
-        patch = 'OneNine'
+    elif is_one_eleven:
+        patch = 'OneEleven'
     else:
         raise Exception('wrong patch')
 
