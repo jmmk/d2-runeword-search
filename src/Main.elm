@@ -1,18 +1,19 @@
 module Main (..) where
 
 import StartApp
-import Html exposing (div, p, h1, h2, h3, text, label, li, ul, input, header, span, section, header, footer)
-import Html.Attributes exposing (id, class)
+import Html exposing (..)
+import Html.Attributes exposing (id, class, style)
 import Html.Events as Events
 import Effects exposing (Effects, Never)
 import Task
 import String
-import Runewords exposing (Runeword, runewords)
+import Runewords exposing (Runeword, Patch(..), runewords)
 
 
 type alias Model =
   { keywords : Maybe (List String)
   , runewords : List Runeword
+  , searchType : SearchType
   }
 
 
@@ -20,6 +21,7 @@ initialModel : Model
 initialModel =
   { keywords = Nothing
   , runewords = runewords
+  , searchType = All
   }
 
 
@@ -30,6 +32,41 @@ init =
 
 type Action
   = KeywordSearch String
+  | ChangeSearchType SearchType
+
+
+renderProperties : List String -> Html.Html
+renderProperties properties =
+  div
+    [ class "content" ]
+    [ ul
+        [ style [ ( "margin-top", "0" ) ] ]
+        (List.map (\p -> li [] [ text p ]) properties)
+    ]
+
+
+showPatch : Patch -> String
+showPatch patch =
+  case patch of
+    OneEleven ->
+      "1.11"
+
+    OneTen ->
+      "1.10"
+
+    OneNine ->
+      "1.09"
+
+
+renderAttributes : Runeword -> Html.Html
+renderAttributes runeword =
+  div
+    [ class "content" ]
+    [ h6 [] [ text ("Sockets: " ++ (toString runeword.sockets)) ]
+    , h6 [] [ text ("Ladder Only: " ++ (toString runeword.ladderOnly)) ]
+    , h6 [] [ text ("Patch: " ++ (showPatch runeword.patch)) ]
+    , h6 [] [ text ("Required Clvl: " ++ (toString runeword.clvl)) ]
+    ]
 
 
 renderRuneword : Runeword -> Html.Html
@@ -45,33 +82,56 @@ renderRuneword runeword =
             [ class "subtitle is-5" ]
             [ text (String.join " + " (List.map toString runeword.runes)) ]
         ]
-      -- , h3 [] [ text ("Type: " ++ (toString runeword.itemType)) ]
-      -- , h3 [] [ text ("Weapon Type: " ++ (toString runeword.weaponType)) ]
-    , h3 [] [ text ("Sockets: " ++ (toString runeword.sockets)) ]
-    , h3 [] [ text ("Ladder Only: " ++ (toString runeword.ladderOnly)) ]
+    , div
+        [ class "columns" ]
+        [ div
+            [ class "column is-4" ]
+            [ renderAttributes runeword ]
+        , div
+            [ class "column is-8" ]
+            [ renderProperties runeword.properties ]
+        ]
     ]
 
 
-keywordMatch : String -> Runeword -> Bool
-keywordMatch keyword runeword =
-  String.contains (String.toLower keyword) (String.toLower runeword.name)
+keywordMatch : String -> String -> Bool
+keywordMatch keyword searchText =
+  String.contains (String.toLower keyword) (String.toLower searchText)
 
 
-filterRunewords : List String -> List Runeword -> List Runeword
-filterRunewords keywords runewords =
-  List.filter (\r -> List.all (\kw -> keywordMatch kw r) keywords) runewords
-
-
-renderRunewordsList : Maybe (List String) -> List Runeword -> Html.Html
-renderRunewordsList keywords runewords =
+filterRunewords : List String -> List Runeword -> SearchType -> List Runeword
+filterRunewords keywords runewords searchType =
   let
+    searchText =
+      case searchType of
+        Name ->
+          (\runeword -> runeword.name)
+
+        Runes ->
+          (\runeword -> String.join "" (List.map toString runeword.runes))
+
+        Properties ->
+          (\runeword -> String.join " " runeword.properties)
+
+        _ ->
+          (\runeword -> runeword.name)
+  in
+    List.filter (\rw -> List.all (\kw -> keywordMatch kw (searchText rw)) keywords) runewords
+
+
+renderRunewordsList : Model -> Html.Html
+renderRunewordsList model =
+  let
+    { runewords, keywords, searchType } =
+      model
+
     filtered =
       case keywords of
         Nothing ->
           runewords
 
         Just keywords ->
-          filterRunewords keywords runewords
+          filterRunewords keywords runewords searchType
   in
     div
       [ class "columns" ]
@@ -82,10 +142,36 @@ renderRunewordsList keywords runewords =
       ]
 
 
-renderSearchField : Signal.Address Action -> Html.Html
-renderSearchField address =
+type SearchType
+  = All
+  | Name
+  | Runes
+  | Properties
+
+
+stFromString : String -> SearchType
+stFromString value =
+  case value of
+    "All" ->
+      All
+
+    "Name" ->
+      Name
+
+    "Runes" ->
+      Runes
+
+    "Properties" ->
+      Properties
+
+    _ ->
+      All
+
+
+renderSearchBar : Signal.Address Action -> Html.Html
+renderSearchBar address =
   div
-    [ class "control is-horizontal" ]
+    [ class "control is-horizontal has-addons" ]
     [ div
         [ class "control-label" ]
         [ label [ class "label" ] [ text "Search: " ]
@@ -93,6 +179,12 @@ renderSearchField address =
     , div
         [ class "control" ]
         [ input [ class "input", Events.on "input" Events.targetValue (\v -> Signal.message address (KeywordSearch v)) ] []
+        , span
+            [ class "select" ]
+            [ select
+                [ Events.on "change" Events.targetValue (\v -> Signal.message address (ChangeSearchType (stFromString v))) ]
+                (List.map (\t -> option [] [ text (toString t) ]) [ All, Name, Runes, Properties ])
+            ]
         ]
     ]
 
@@ -150,10 +242,10 @@ view address model =
                 [ class "columns" ]
                 [ div
                     [ class "column is-half" ]
-                    [ renderRunewordsList model.keywords model.runewords ]
+                    [ renderRunewordsList model ]
                 , div
                     [ class "column is-half" ]
-                    [ renderSearchField address ]
+                    [ renderSearchBar address ]
                 ]
             ]
         ]
@@ -173,6 +265,9 @@ update action model =
     case action of
       KeywordSearch query ->
         ( { model | keywords = parseSearchKeywords query }, Effects.none )
+
+      ChangeSearchType searchType ->
+        ( { model | searchType = searchType }, Effects.none )
 
 
 app : StartApp.App Model
