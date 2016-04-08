@@ -1,0 +1,940 @@
+{
+  "collection1": [
+    {
+      "runeword-name": {
+        "text": "Ancient's Pledge",
+        "href": "http://diablo2.diablowiki.net/Ancient%27s_Pledge"
+      },
+      "runeword-runes": "RalOrtTal",
+      "runeword-properties": "+50% Enhanced Defense\nCold Resist +43%\nLightning Resist +48%\nFire Resist +48%\nPoison Resist +48%\n10% Damage Taken Goes to Mana",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "RalOrtTal\nRal (8) + Ort (9) + Tal (7)\nShields {3}\nClvl Required: 21"
+    },
+    {
+      "runeword-name": {
+        "text": "Beast",
+        "href": "http://diablo2.diablowiki.net/Beast"
+      },
+      "runeword-runes": "BerTirUmMalLum",
+      "runeword-properties": "Level 9 Fanaticism Aura When Equipped\n+40% Increased Attack Speed\n+240-270% Enhanced Damage (varies)\n20% Chance of Crushing Blow\n25% Chance of Open Wounds\n+3 To Werebear\n+3 To Lycanthropy\nPrevent Monster Heal\n+25-40 To Strength (varies)\n+10 To Energy\n+2 To Mana After Each Kill\nLevel 13 Summon Grizzly (5 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "BerTirUmMalLum\nBer (30) + Tir (3) + Um (22) + Mal (23) + Lum (17)\nAxes, Hammers & Scepters {5}\nClvl Required: 63"
+    },
+    {
+      "runeword-name": {
+        "text": "Black",
+        "href": "http://diablo2.diablowiki.net/Black"
+      },
+      "runeword-runes": "ThulIoNef",
+      "runeword-properties": "+15% Increased Attack Speed\n+120% Enhanced Damage\n+200 to Attack Rating\nAdds 3-14 Cold Damage (3 sec)\n40% Chance of Crushing Blow\nKnockback\n+10 to Vitality\nMagic Damage Reduced By 2\nLevel 4 Corpse Explosion (12 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "ThulIoNef\nThul (10) + Io (16) + Nef (4)\nClubs, Hammers, Maces {3}\nClvl Required: 35"
+    },
+    {
+      "runeword-name": {
+        "text": "Bone",
+        "href": "http://diablo2.diablowiki.net/Bone"
+      },
+      "runeword-runes": "SolUmUm",
+      "runeword-properties": "15% Chance To Cast level 10 Bone Armor When Struck\n15% Chance To Cast level 10 Bone Spear On Striking\n+2 To Necromancer Skill Levels\n+100-150 To Mana (varies) \nAll Resistances +30\nDamage Reduced By 7",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "No",
+      "runeword-1.09": "No",
+      "runeword-info": "SolUmUm\nSol (12) + Um (22) + Um (22)\nArmor {3}\nClvl Required: 47"
+    },
+    {
+      "runeword-name": {
+        "text": "Bramble",
+        "href": "http://diablo2.diablowiki.net/Bramble"
+      },
+      "runeword-runes": "RalOhmSurEth",
+      "runeword-properties": "Level 15-21 Thorns Aura When Equipped (varies)\n+50% Faster Hit Recovery\n+25-50% To Poison Skill Damage (varies)\n+300 Defense\nIncrease Maximum Mana 5%\nRegenerate Mana 15%\n+5% To Maximum Cold Resist\nFire Resist +30%\nPoison Resist +100%\n+13 Life After Each Kill\nLevel 13 Spirit of Barbs (33 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "RalOhmSurEth\nRal (8) + Ohm (27) + Sur (29) + Eth (5)\nArmor {4}\nClvl Required: 61"
+    },
+    {
+      "runeword-name": {
+        "text": "Brand",
+        "href": "http://diablo2.diablowiki.net/Brand"
+      },
+      "runeword-runes": "JahLoMalGul",
+      "runeword-properties": "35% Chance To Cast Level 14 Amplify Damage When Struck\n100% Chance To Cast Level 18 Bone Spear On Striking\nFires Explosive Arrows or Bolts (15)\n+260-340% Enhanced Damage (varies)\nIgnore Target's Defense\n20% Bonus to Attack Rating\n+280-330% Damage To Demons (varies)\n20% Deadly Strike \nPrevent Monster Heal\nKnockback",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "JahLoMalGul\nJah (31) + Lo (28) + Mal (23) + Gul (25)\nMissile Weapons {4}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Breath of the Dying",
+        "href": "http://diablo2.diablowiki.net/Breath_of_the_Dying"
+      },
+      "runeword-runes": "VexHelElEldZodEth",
+      "runeword-properties": "50% Chance To Cast Level 20 Poison Nova When You Kill An Enemy\nIndestructible\n+60% Increased Attack Speed\n+350-400% Enhanced Damage (varies)\n-25% Target Defense\n+50 To Attack Rating\n+200% Damage To Undead\n+50 To Attack Rating Against Undead\n7% Mana Stolen Per Hit\n12-15% Life Stolen Per Hit (varies)\nPrevent Monster Heal\n+30 To All Attributes\n+1 To Light Radius\nRequirements -20%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "VexHelElEldZodEth\nVex (26) + Hel (15) + El (1) + Eld (2) + Zod (33) + Eth (5)\nAll Weapons {6}\nClvl Required: 69"
+    },
+    {
+      "runeword-name": {
+        "text": "Call to Arms",
+        "href": "http://diablo2.diablowiki.net/Call_to_Arms"
+      },
+      "runeword-runes": "AmnRalMalIstOhm",
+      "runeword-properties": "+1 To All Skills\n+40% Increased Attack Speed\n+240-290% Enhanced Damage (varies)\nAdds 5-30 Fire Damage\n7% Life Stolen Per Hit\n+2-6 To Battle Command (varies)\n+1-6 To Battle Orders (varies)\n+1-4 To Battle Cry (varies)\nPrevent Monster Heal\nReplenish Life +12\n30% Better Chance of Getting Magic Items",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "AmnRalMalIstOhm\nAmn (11) + Ral (8) + Mal (23) + Ist (24) + Ohm (27)\nWeapons {5}\nClvl Required: 57"
+    },
+    {
+      "runeword-name": {
+        "text": "Chains of Honor",
+        "href": "http://diablo2.diablowiki.net/Chains_of_Honor"
+      },
+      "runeword-runes": "DolUmBerIst",
+      "runeword-properties": "+2 To All Skills\n+200% Damage To Demons\n+100% Damage To Undead\n8% Life Stolen Per Hit\n+70% Enhanced Defense\n+20 To Strength\nReplenish Life +7\nAll Resistances +65\nDamage Reduced By 8%\n25% Better Chance of Getting Magic Items",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "DolUmBerIst\nDol (14) + Um (22) + Ber (30) + Ist (24)\nArmor {4}\nClvl Required: 63"
+    },
+    {
+      "runeword-name": {
+        "text": "Chaos",
+        "href": "http://diablo2.diablowiki.net/Chaos"
+      },
+      "runeword-runes": "FalOhmUm",
+      "runeword-properties": "9% Chance To Cast Level 11 Frozen Orb On Striking\n11% Chance To Cast Level 9 Charged Bolt On Striking\n+35% Increased Attacked Speed\n+240-290% Enhanced Damage (varies)\nAdds 216-471 Magic Damage\n25% Chance of Open Wounds\n+1 To Whirlwind\n+10 To Strength\n+15 Life After Each Demon Kill",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "FalOhmUm\nFal (19) + Ohm (27) + Um (22)\nClaws {3}\nClvl Required: 57"
+    },
+    {
+      "runeword-name": {
+        "text": "Crescent Moon",
+        "href": "http://diablo2.diablowiki.net/Crescent_Moon_(Runeword)"
+      },
+      "runeword-runes": "ShaelUmTir",
+      "runeword-properties": "10% Chance To Cast Level 17 Chain Lightning On Striking\n7% Chance To Cast Level 13 Static Field On Striking\n+20% Increased Attack Speed\n+180-220% Enhanced Damage (varies)\nIgnore Target's Defense\n-35% To Enemy Lightning Resistance\n25% Chance of Open Wounds\n+9-11 Magic Absorb (varies)\n+2 To Mana After Each Kill\nLevel 18 Summon Spirit Wolf (30 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "ShaelUmTir\nShael (13) + Um (22) + Tir (3)\nAxes, Polearms & Swords {3}\nClvl Required: 47"
+    },
+    {
+      "runeword-name": {
+        "text": "Death",
+        "href": "http://diablo2.diablowiki.net/Death"
+      },
+      "runeword-runes": "HelElVexOrtGul",
+      "runeword-properties": "Indestructible\n100% Chance To Cast Level 44 Chain Lightning When You Die\n25% Chance To Cast Level 18 Glacial Spike On Attack\n+300-385% Enhanced Damage (varies)\n20% Bonus To Attack Rating\n+50 To Attack Rating\nAdds 1-50 Lightning Damage\n7% Mana Stolen Per Hit\n50% Chance of Crushing Blow\n(0.5*Clvl)% Deadly Strike (Based on Character Level)\n+1 To Light Radius\nLevel 22 Blood Golem (15 Charges)\nRequirements -20%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "HelElVexOrtGul\nHel (15) + El (1) + Vex (26) + Ort (9) + Gul (25)\nSwords & Axes {5}\nClvl Required: 55"
+    },
+    {
+      "runeword-name": {
+        "text": "Delirium",
+        "href": "http://diablo2.diablowiki.net/Delirium"
+      },
+      "runeword-runes": "LemIstIo",
+      "runeword-properties": "1% Chance To Cast lvl 50 Delirium When Struck\n6% Chance To Cast lvl 14 Mind Blast When Struck\n14% Chance To Cast lvl 13 Terror When Struck\n11% Chance To Cast lvl 18 Confuse On Striking\n+2 To All Skills\n+261 Defense\n+10 To Vitality\n50% Extra Gold From Monsters\n25% Better Chance of Getting Magic Items\nLevel 17 Attract (60 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "LemIstIo\nLem (20) + Ist (24) + Io (16)\nHeadgear (all types) {3}\nClvl Required: 51"
+    },
+    {
+      "runeword-name": {
+        "text": "Destruction",
+        "href": "http://diablo2.diablowiki.net/Destruction"
+      },
+      "runeword-runes": "VexLoBerJahKo",
+      "runeword-properties": "23% Chance To Cast Level 12 Volcano On Striking\n5% Chance To Cast Level 23 Molten Boulder On Striking\n100% Chance To Cast level 45 Meteor When You Die\n15% Chance To Cast Level 22 Nova On Attack\n+350% Enhanced Damage\nIgnore Target's Defense\nAdds 100-180 Magic Damage\n7% Mana Stolen Per Hit\n20% Chance Of Crushing Blow\n20% Deadly Strike\nPrevent Monster Heal\n+10 To Dexterity",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "VexLoBerJahKo\nVex (26) + Lo (28) + Ber (30) + Jah (31) + Ko (18)\nPolearms & Swords {5}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Enigma",
+        "href": "http://diablo2.diablowiki.net/Enigma"
+      },
+      "runeword-runes": "JahIthBer",
+      "runeword-properties": "+2 To All Skills\n+45% Faster Run/Walk\n+1 To Teleport\n+750-775 Defense (Varies) \n+(0.75*Clvl) To Strength (Based On Character Level)\nIncrease Maximum Life 5%\nDamage Reduced By 8%\n+14 Life After Each Kill\n15% Damage Taken Goes To Mana\n(1*Clvl)% Better Chance of Getting Magic Items (Based On Character Level)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "JahIthBer\nJah (31) + Ith (6) + Ber (30)\nArmor {4}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Doom",
+        "href": "http://diablo2.diablowiki.net/Doom"
+      },
+      "runeword-runes": "HelOhmUmLoCham",
+      "runeword-properties": "5% Chance To Cast Level 18 Volcano On Striking\nLevel 12 Holy Freeze Aura When Equipped\n+2 To All Skills\n+45% Increased Attack Speed\n+330-370% Enhanced Damage (varies)\n-40-60% To Enemy Cold Resistance (varies)\n20% Deadly Strike\n25% Chance of Open Wounds\nPrevent Monster Heal\nFreezes Target +3\nRequirements -20%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "HelOhmUmLoCham\nHel (15) + Ohm (27) + Um (22) + Lo (28) + Cham (32)\nAxes, Hammers & Polearms {5}\nClvl Required: 67"
+    },
+    {
+      "runeword-name": {
+        "text": "Dragon",
+        "href": "http://diablo2.diablowiki.net/Dragon"
+      },
+      "runeword-runes": "SurLoSol",
+      "runeword-properties": "Both\n20% Chance to Cast Level 18 Venom When Struck\n12% Chance To Cast Level 15 Hydra On Striking\nLevel 14 Holy Fire Aura When Equipped\n+360 Defense\n+230 Defense Vs. Missile\n+3-5 To All Attributes (varies)\n+(0.375*Clvl) To Strength (Based on Character Level)\n+5% To Maximum Lightning Resist\nDamage Reduced by 7\nArmor\nIncrease Maximum Mana 5%\nShields\n+50 To Mana",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "SurLoSol\nSur (29) + Lo (28) + Sol (12)\nArmor, Shields {3}\nClvl Required: 61"
+    },
+    {
+      "runeword-name": {
+        "text": "Dream",
+        "href": "http://diablo2.diablowiki.net/Dream"
+      },
+      "runeword-runes": "IoJahPul",
+      "runeword-properties": "Both\n10% Chance To Cast Level 15 Confuse When Struck\nLevel 15 Holy Shock Aura When Equipped\n+20-30% Faster Hit Recovery (varies)\n+30% Enhanced Defense\n+150-220 Defense (varies)\n+10 To Vitality\n+(0.625*Clvl) To Mana (Based On Character Level)\nAll Resistances +5-20 (varies)\n12-25% Better Chance of Getting Magic Items (varies)\nHeadgear\nIncrease Maximum Life 5%\nShields\n+50 To Life",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "IoJahPul\nIo (16) + Jah (31) + Pul (21)\nHeadgear, Shields {3}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Duress",
+        "href": "http://diablo2.diablowiki.net/Duress"
+      },
+      "runeword-runes": "ShaelUmThul",
+      "runeword-properties": "40% faster hit Recovery\n+10-20% Enhanced Damage (varies)\nAdds 37-133 Cold Damage\n15% Crushing Blow\n33% Open Wounds\n+150-200% Enhanced Defense (varies)\n-20% Slower Stamina Drain\nCold Resist +45%\nLightning Resist +15%\nFire Resist +15%\nPoison Resist +15%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "ShaelUmThul\nShael (13) + Um (22) + Thul (10)\nArmor {3}\nClvl Required: 47"
+    },
+    {
+      "runeword-name": {
+        "text": "Edge",
+        "href": "http://diablo2.diablowiki.net/Edge"
+      },
+      "runeword-runes": "TirTalAmn",
+      "runeword-properties": "Level 15 Thorns Aura When Equipped\n+35% Increased Attack Speed\n+320-380% Damage To Demons (varies)\n+280% Damage To Undead\n+75 Poison Damage Over 5 Seconds\n7% Life Stolen Per Hit\nPrevent Monster Heal\n+5-10 To All Attributes (varies)\n+2 To Mana After Each Kill\nReduces All Vendor Prices 15%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "TirTalAmn\nTir (3) + Tal (7) + Amn (11)\nMissile Weapons {3}\nClvl Required: 25"
+    },
+    {
+      "runeword-name": {
+        "text": "Enlightenment",
+        "href": "http://diablo2.diablowiki.net/Enlightenment"
+      },
+      "runeword-runes": "PulRalSol",
+      "runeword-properties": "5% Chance To Cast Level 15 Blaze When Struck\n5% Chance To Cast level 15 Fire Ball On Striking\n+2 To Sorceress Skill Levels\n+1 To Warmth\n+30% Enhanced Defense\nFire Resist +30%\nDamage Reduced By 7",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "No",
+      "runeword-1.09": "No",
+      "runeword-info": "PulRalSol\nPul (21) + Ral (8) + Sol (12)\nArmor {3}\nClvl Required: 45"
+    },
+    {
+      "runeword-name": {
+        "text": "Eternity",
+        "href": "http://diablo2.diablowiki.net/Eternity"
+      },
+      "runeword-runes": "AmnBerIstSolSur",
+      "runeword-properties": "Indestructible\n+260-310% Enhanced Damage (varies)\n+9 To Minimum Damage\n7% Life Stolen Per Hit\n20% Chance of Crushing Blow\nHit Blinds Target\nSlows Target By 33%\nReplenish Mana 16%\nCannot Be Frozen\n30% Better Chance Of Getting Magic Items\nLevel 8 Revive (88 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "AmnBerIstSolSur\nAmn (11) + Ber (30) + Ist (24) + Sol (12) + Sur (29)\nAll Melee Weapons {5}\nClvl Required: 63"
+    },
+    {
+      "runeword-name": {
+        "text": "Exile",
+        "href": "http://diablo2.diablowiki.net/Exile"
+      },
+      "runeword-runes": "VexOhmIstDol",
+      "runeword-properties": "15% Chance To Cast Level 5 Life Tap On Striking\nLevel 13-16 Defiance Aura When Equipped (varies)\n+2 To Offensive Auras (Paladin Only)\n+30% Faster Block Rate\nFreezes Target\n+220-260% Enhanced Defense (varies)\nReplenish Life +7\n+5% To Maximum Cold Resist\n+5% To Maximum Fire Resist\n25% Better Chance Of Getting Magic Items\nRepairs 1 Durability every 4 seconds",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "VexOhmIstDol\nVex (26) + Ohm (27) + Ist (24) + Dol (14)\nShields {4}\nClvl Required: 57"
+    },
+    {
+      "runeword-name": {
+        "text": "Faith",
+        "href": "http://diablo2.diablowiki.net/Faith"
+      },
+      "runeword-runes": "OhmJahLemEld",
+      "runeword-properties": "Level 12-15 Fanaticism Aura When Equipped (varies)\n+1-2 To All Skills (varies)\n+330% Enhanced Damage\nIgnore Target's Defense\n300% Bonus To Attack Rating\n+75% Damage To Undead\n+50 To Attack Rating Against Undead\n+120 Fire Damage\nAll Resistances +15\n10% Reanimate As: Returned\n75% Extra Gold From Monsters",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "OhmJahLemEld\nOhm (27) + Jah (31) + Lem (20) + Eld (2)\nMissile Weapons {4}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Famine",
+        "href": "http://diablo2.diablowiki.net/Famine"
+      },
+      "runeword-runes": "FalOhmOrtJah",
+      "runeword-properties": "+30% Increased Attack Speed\n+320-370% Enhanced Damage (varies)\nIgnore Target's Defense\nAdds 180-200 Magic Damage\nAdds 50-200 Fire Damage\nAdds 51-250 Lightning Damage\nAdds 50-200 Cold Damage\n12% Life Stolen Per Hit\nPrevent Monster Heal\n+10 To Strength",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "FalOhmOrtJah\nFal (19) + Ohm (27) + Ort (9) + Jah (31)\nAxes & Hammers {4}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Fortitude",
+        "href": "http://diablo2.diablowiki.net/Fortitude"
+      },
+      "runeword-runes": "ElSolDolLo",
+      "runeword-properties": "Both\n20% Chance To Cast Level 15 Chilling Armor when Struck\n+25% Faster Cast Rate\n+300% Enhanced Damage\n+200% Enhanced Defense\n+((8-12)*0.125*Clvl) To Life (Based on Character Level) (varies)\nAll Resistances +25-30 (varies)\n12% Damage Taken Goes To Mana\n+1 To Light Radius\nWeapons\n+9 To Minimum Damage\n+50 To Attack Rating\n20% Deadly Strike\nHit Causes Monster To Flee 25%\nArmor\n+15 Defense\nReplenish Life +7\n+5% To Maximum Lightning Resist\nDamage Reduced By 7",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "ElSolDolLo\nEl (1) + Sol (12) + Dol (14) + Lo (28)\nWeapons & Armor {4}\nClvl Required: 59"
+    },
+    {
+      "runeword-name": {
+        "text": "Fury",
+        "href": "http://diablo2.diablowiki.net/Fury_(runeword)"
+      },
+      "runeword-runes": "JahGulEth",
+      "runeword-properties": "40% Increased Attack Speed\n+209% Enhanced Damage\nIgnores Target Defense\n-25% Target Defense\n20% Bonus to Attack Rating\n6% Life Stolen Per Hit\n33% Chance Of Deadly Strike\n66% Chance Of Open Wounds\n+5 To Frenzy (Barbarian Only)\nPrevent Monster Heal",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "JahGulEth\nJah (31) + Gul (25) + Eth (5)\nAll Melee Weapons {3}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Gloom",
+        "href": "http://diablo2.diablowiki.net/Gloom"
+      },
+      "runeword-runes": "FalUmPul",
+      "runeword-properties": "15% Chance To Cast Level 3 Dim Vision When Struck\n+10% Faster Hit Recovery\n+200-260% Enhanced Defense (varies)\n+10 To Strength\nAll Resistances +45\nHalf Freeze Duration\n5% Damage Taken Goes To Mana\n-3 To Light Radius",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "FalUmPul\nFal (19)+ Um (22) + Pul (21)\nArmor {3}\nClvl Required: 47"
+    },
+    {
+      "runeword-name": {
+        "text": "Grief",
+        "href": "http://diablo2.diablowiki.net/Grief"
+      },
+      "runeword-runes": "EthTirLoMalRal",
+      "runeword-properties": "35% Chance To Cast Level 15 Venom On Striking\n+30-40% Increased Attack Speed (varies)\nDamage +340-400 (varies)\nIgnore Target's Defense\n-25% Target Defense\n+(1.875*Clvl)% Damage To Demons (Based on Character Level)\nAdds 5-30 Fire Damage\n-20-25% To Enemy Poison Resistance (varies)\n20% Deadly Strike\nPrevent Monster Heal\n+2 To Mana After Each Kill\n+10-15 Life After Each Kill (varies)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "EthTirLoMalRal\nEth (5) + Tir (3) + Lo (28) + Mal (23) + Ral (8)\nSwords & Axes {5}\nClvl Required: 59"
+    },
+    {
+      "runeword-name": {
+        "text": "Hand of Justice",
+        "href": "http://diablo2.diablowiki.net/Hand_of_Justice"
+      },
+      "runeword-runes": "SurChamAmnLo",
+      "runeword-properties": "100% Chance To Cast Level 36 Blaze When You Level-Up\n100% Chance To Cast Level 48 Meteor When You Die\nLevel 16 Holy Fire Aura When Equipped\n+33% Increased Attack Speed\n+280-330% Enhanced Damage (varies)\nIgnore Target's Defense\n-20% To Enemy Fire Resistance\n7% Life Stolen Per Hit\n20% Deadly Strike\nHit Blinds Target\nFreezes Target +3",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "SurChamAmnLo\nSur (29) + Cham (32) + Amn (11) + Lo (28)\nAll Weapons {4}\nClvl Required: 67"
+    },
+    {
+      "runeword-name": {
+        "text": "Harmony",
+        "href": "http://diablo2.diablowiki.net/Harmony"
+      },
+      "runeword-runes": "TirIthSolKo",
+      "runeword-properties": "Level 10 Vigor Aura When Equipped\n+200-275% Enhanced Damage (varies)\n+9 To Minimum Damage\n+9 To Maximum Damage\nAdds 55-160 Fire Damage\nAdds 55-160 Lightning Damage\nAdds 55-160 Cold Damage\n+2-6 To Valkyrie (varies)\n+10 To Dexterity\nRegenerate Mana 20%\n+2 To Mana After Each Kill\n+2 To Light Radius\nLevel 20 Revive (25 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "TirIthSolKo\nTir (3) + Ith (6) + Sol (12) + Ko (18)\nMissile Weapons {4}\nClvl Required: 39"
+    },
+    {
+      "runeword-name": {
+        "text": "Heart of the Oak",
+        "href": "http://diablo2.diablowiki.net/Heart_of_the_Oak"
+      },
+      "runeword-runes": "KoVexPulThul",
+      "runeword-properties": "+3 To All Skills\n+40% Faster Cast Rate\n+75% Damage To Demons\n+100 To Attack Rating Against Demons\nAdds 3-14 Cold Damage\n7% Mana Stolen Per Hit\n+10 To Dexterity\nReplenish Life +20\nIncrease Maximum Mana 15%\nAll Resistances +30-40 (varies)\nLevel 4 Oak Sage (25 Charges)\nLevel 14 Raven (60 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "KoVexPulThul\nKo (18) + Vex (26) + Pul (21) + Thul (10)\nStaves & Maces {4}\nClvl Required:55"
+    },
+    {
+      "runeword-name": {
+        "text": "Holy Thunder",
+        "href": "http://diablo2.diablowiki.net/Holy_Thunder"
+      },
+      "runeword-runes": "EthRalOrtTal",
+      "runeword-properties": "+60% Enhanced Damage\n+10 to Maximum Damage\n-25% Target Defense\nAdds 5-30 Fire Damage\nAdds 21-110 Lightning Damage\n+75 Poison Damage over 5 secs\n+3 to Holy Shock (Paladin Only)\n+5% to Maximum Lightning Resist\nLightning Resist +60%\nLevel 7 Chain Lightning (60 charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "EthRalOrtTal\nEth (5) + Ral (8) + Ort (9) + Tal (7)\nScepters {4}\nClvl Required: 23"
+    },
+    {
+      "runeword-name": {
+        "text": "Honor",
+        "href": "http://diablo2.diablowiki.net/Honor"
+      },
+      "runeword-runes": "AmnElIthTirSol",
+      "runeword-properties": "+1 to all skills\n+160% Enhanced Damage\n+9 to Minimum Damage\n+9 to Maximum Damage\n+250 Attack Rating\n7% Life Stolen per Hit\n25% Deadly Strike\n+10 to Strength\nReplenish life +10\n+2 to Mana after each Kill\n+1 to Light Radius",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "AmnElIthTirSol\nAmn (11) + El (1) + Ith (6) + Tir (3) + Sol (12)\nAll Melee Weapons {5}\nClvl Required: 27"
+    },
+    {
+      "runeword-name": {
+        "text": "Ice",
+        "href": "http://diablo2.diablowiki.net/Ice"
+      },
+      "runeword-runes": "AmnShaelJahLo",
+      "runeword-properties": "100% Chance To Cast Level 40 Blizzard When You Level-up\n25% Chance To Cast Level 22 Frost Nova On Striking\nLevel 18 Holy Freeze Aura When Equipped\n+20% Increased Attack Speed\n+140-210% Enhanced Damage (varies)\nIgnore Target's Defense\n+25-30% To Cold Skill Damage (varies)\n7% Life Stolen Per Hit\n-20% To Enemy Cold Resistance\n20% Deadly Strike\n(3.125*Clvl)% Extra Gold From Monsters (Based on Character Level)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "AmnShaelJahLo\nAmn (11) + Shael (13) + Jah (31) + Lo (28)\nMissile Weapons {4}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Infinity",
+        "href": "http://diablo2.diablowiki.net/Infinity"
+      },
+      "runeword-runes": "BerMalBerIst",
+      "runeword-properties": "50% Chance To Cast Level 20 Chain Lightning When You Kill An Enemy\nLevel 12 Conviction Aura When Equipped\n+35% Faster Run/Walk\n+255-325% Enhanced Damage (varies)\n-(45-55)% To Enemy Lightning Resistance (varies)\n40% Chance of Crushing Blow\nPrevent Monster Heal\n+(0.5*Clvl) To Vitality (Based on Character Level)\n30% Better Chance of Getting Magic Items\nLevel 21 Cyclone Armor (30 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "BerMalBerIst\nBer (30) + Mal (23) + Ber (30) + Ist (24)\nPolearms {4}\nClvl Required: 63"
+    },
+    {
+      "runeword-name": {
+        "text": "Insight",
+        "href": "http://diablo2.diablowiki.net/Insight"
+      },
+      "runeword-runes": "RalTirTalSol",
+      "runeword-properties": "Level 12-17 Meditation Aura When Equipped (varies)\n+35% Faster Cast Rate\n+200-260% Enhanced Damage (varies)\n+9 To Minimum Damage\n180-250% Bonus to Attack Rating (varies)\nAdds 5-30 Fire Damage\n+75 Poison Damage Over 5 Seconds\n+1-6 To Critical Strike (varies)\n+5 To All Attributes\n+2 To Mana After Each Kill\n23% Better Chance of Getting Magic Items",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "RalTirTalSol\nRal (8) + Tir (3) + Tal (7) + Sol (12)\nPolearms & Staves {4}\nClvl Required: 27"
+    },
+    {
+      "runeword-name": {
+        "text": "King's Grace",
+        "href": "http://diablo2.diablowiki.net/King%27s_Grace"
+      },
+      "runeword-runes": "AmnRalThul",
+      "runeword-properties": "+100% Enhanced Damage\n+150 to Attack Rating\n+100% Damage to Demons\n+100 to Attack Rating against Demons\n+50% Damage to Undead\n+100 to Attack Rating against Undead\nAdds 5-30 Fire Damage\nAdds 3-14 Cold damage\n7% Life stolen per hit",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "AmnRalThul\nAmn (11) + Ral (8) + Thul (10) \nSwords & Scepters {3}\nClvl Required: 25"
+    },
+    {
+      "runeword-name": {
+        "text": "Kingslayer",
+        "href": "http://diablo2.diablowiki.net/Kingslayer"
+      },
+      "runeword-runes": "MalUmGulFal",
+      "runeword-properties": "+30% Increased Attack Speed\n+230-270% Enhanced Damage (varies)\n-25% Target Defense\n20% Bonus To Attack Rating\n33% Chance of Crushing Blow\n50% Chance of Open Wounds\n+1 To Vengeance\nPrevent Monster Heal\n+10 To Strength\n40% Extra Gold From Monsters",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "MalUmGulFal\nMal (23) + Um (22) + Gul (25) + Fal (19)\nSwords & Axes {4}\nClvl Required: 53"
+    },
+    {
+      "runeword-name": {
+        "text": "Last Wish",
+        "href": "http://diablo2.diablowiki.net/Last_Wish"
+      },
+      "runeword-runes": "JahMalJahSurJahBer",
+      "runeword-properties": "6% Chance To Cast Level 11 Fade When Struck\n10% Chance To Cast Level 18 Life Tap On Striking\n20% Chance To Cast Level 20 Charged Bolt On Attack\nLevel 17 Might Aura When Equipped\n+330-375% Enhanced Damage (varies)\nIgnore Target's Defense\n60-70% Chance of Crushing Blow (varies)\nPrevent Monster Heal\nHit Blinds Target\n(0.5*Clvl)% Chance of Getting Magic Items (Based on Character Level)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "JahMalJahSurJahBer\nJah (31) + Mal (23) + Jah (31) + Sur (29) + Jah (31) + Ber (30)\nAxes, Hammers & Swords {6}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Lawbringer",
+        "href": "http://diablo2.diablowiki.net/Lawbringer"
+      },
+      "runeword-runes": "AmnLemKo",
+      "runeword-properties": "20% Chance To Cast Level 15 Decrepify On Striking\nLevel 16-18 Sanctuary Aura When Equipped (varies)\n-50% Target Defense\nAdds 150-210 Fire Damage\nAdds 130-180 Cold Damage\n7% Life Stolen Per Hit\nSlain Monsters Rest In Peace\n+200-250 Defense Vs. Missile (varies)\n+10 To Dexterity\n75% Extra Gold From Monsters",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "AmnLemKo\nAmn (11) + Lem (20) + Ko (18)\nHammers, Scepters & Swords {3}\nClvl Required: 43"
+    },
+    {
+      "runeword-name": {
+        "text": "Leaf",
+        "href": "http://diablo2.diablowiki.net/Leaf"
+      },
+      "runeword-runes": "TirRal",
+      "runeword-properties": "+3 to Fire Skills\nAdds 5-30 Fire Damage\n+3 to Inferno (Sorceress Only)\n+3 to Warmth (Sorceress Only)\n+3 to Fire Bolt (Sorceress Only)\n+(2*Clvl) Defence (Based on Character Level)\nCold Resist +33%\n+2 to Mana after each Kill",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "TirRal\nTir (3) + Ral (8)\nStaves {2}\nClvl Required: 19"
+    },
+    {
+      "runeword-name": {
+        "text": "Lionheart",
+        "href": "http://diablo2.diablowiki.net/Lionheart"
+      },
+      "runeword-runes": "HelLumFal",
+      "runeword-properties": "+20% Enhanced Damage\n+25 To Strength\n+15 To Dexterity\n+20 To Vitality\n+10 To Energy\n+50 To Life\nAll Resistances +30\nRequirements -15%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "HelLumFal\nHel (15) + Lum (17) + Fal (19)\nArmor {3}\nClvl Required: 41"
+    },
+    {
+      "runeword-name": {
+        "text": "Lore",
+        "href": "http://diablo2.diablowiki.net/Lore"
+      },
+      "runeword-runes": "OrtSol",
+      "runeword-properties": "+1 to All Skills\n+10 to Energy\nLightning Resist +30%\nDamage Reduced by 7\n+2 to Mana after each Kill\n+2 to Light Radius",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "OrtSol\nOrt (9) + Sol (12)\nHeadgear {2}\nClvl Required: 27"
+    },
+    {
+      "runeword-name": {
+        "text": "Malice",
+        "href": "http://diablo2.diablowiki.net/Malice"
+      },
+      "runeword-runes": "IthElEth",
+      "runeword-properties": "+33% Enhanced Damage\n+9 to Maximum Damage\n-25% Target Defense\n+50 to Attack Rating\n100% Chance of Open wounds\nPrevent Monster Heal\n-100 to Monster Defense Per Hit\nDrain Life -5",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "IthElEth\nIth (6) + El (1) + Eth (5)\nAll Melee Weapons {3}\nClvl Required: 15"
+    },
+    {
+      "runeword-name": {
+        "text": "Melody",
+        "href": "http://diablo2.diablowiki.net/Melody"
+      },
+      "runeword-runes": "ShaelKoNef",
+      "runeword-properties": "+3 To Bow and Crossbow Skills (Amazon Only)\n+20% Increased Attack Speed\n+50% Enhanced Damage\n+300% Damage To Undead\n+3 To Slow Missiles (Amazon Only)\n+3 To Dodge (Amazon Only)\n+3 To Critical Strike (Amazon Only)\nKnockback\n+10 To Dexterity",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "ShaelKoNef\nShael (13) + Ko (18) + Nef (4)\nMissile Weapons {3}\nClvl Required: 39"
+    },
+    {
+      "runeword-name": {
+        "text": "Memory",
+        "href": "http://diablo2.diablowiki.net/Memory"
+      },
+      "runeword-runes": "LumIoSolEth",
+      "runeword-properties": "+3 To Sorceress Skill Levels\n+33% Faster Cast Rate\n+9 To Minimum Damage\n-25% Target Defence\n+3 To Energy Shield (Sorceress Only)\n+2 To Static Field (Sorceress Only)\n+50% Enhanced Defense\n+10 Vitality\n+10 Energy\nIncrease Maximum Mana 20%\nMagic Damage Reduced By 7",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "LumIoSolEth\nLum (17) + Io (16) + Sol (12) + Eth (5)\nStaves {4}\nClvl Required: 37"
+    },
+    {
+      "runeword-name": {
+        "text": "Myth",
+        "href": "http://diablo2.diablowiki.net/Myth"
+      },
+      "runeword-runes": "HelAmnNef",
+      "runeword-properties": "3% Chance To Cast Level 1 Howl When Struck\n10% Chance To Cast Level 1 Taunt On Striking\n+2 To Barbarian Skill Levels\n+30 Defense Vs. Missile\nReplenish Life +10\nAttacker Takes Damage of 14\nRequirements -15%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "No",
+      "runeword-1.09": "No",
+      "runeword-info": "HelAmnNef\nHel (15) + Amn (11) + Nef (4)\nArmor {3}\nClvl Required: 25"
+    },
+    {
+      "runeword-name": {
+        "text": "Stealth",
+        "href": "http://diablo2.diablowiki.net/Stealth"
+      },
+      "runeword-runes": "TalEth",
+      "runeword-properties": "+25% Faster Run/Walk\n+25% Faster Casting Rate\n+25% Faster Hit Recovery\n+6 to Dexterity\nRegenerate Mana 15%\n+15 Maximum Stamina\nPoison Resist +30%\nMagic Damage Reduced by 3",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "TalEth\nTal (7) + Eth (5)\nArmor {2}\nClvl Required: 17"
+    },
+    {
+      "runeword-name": {
+        "text": "Nadir",
+        "href": "http://diablo2.diablowiki.net/Nadir"
+      },
+      "runeword-runes": "NefTir",
+      "runeword-properties": "+50% Enhanced Defense\n+10 Defense\n+30 Defense vs. Missile\n+5 to Strength\n+2 to Mana after each Kill\n-33% Extra Gold from Monsters\n-3 to Light Radius\nLevel 13 Cloak of Shadows (9 charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "NefTir\nNef (4) + Tir (3)\nHeadgear (all types) {2}\nClvl Required: 13"
+    },
+    {
+      "runeword-name": {
+        "text": "Oath",
+        "href": "http://diablo2.diablowiki.net/Oath"
+      },
+      "runeword-runes": "ShaelPulMalLum",
+      "runeword-properties": "Indestructible\n30% Chance To Cast Level 20 Bone Spirit On Striking\n+50% Increased Attack Speed\n+210-340% Enhanced Damage (varies)\n+75% Damage To Demons\n+100 To Attack Rating Against Demons\nPrevent Monster Heal\n+10 To Energy\n+10-15 Magic Absorb (varies)\nLevel 16 Heart of Wolverine (20 Charges)\nLevel 17 Iron Golem (14 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "ShaelPulMalLum\nShael (13) + Pul (21) + Mal (23) + Lum (17)\nAxes, Maces & Swords {4}\nClvl Required: 59"
+    },
+    {
+      "runeword-name": {
+        "text": "Obedience",
+        "href": "http://diablo2.diablowiki.net/Obedience"
+      },
+      "runeword-runes": "HelKoThulEthFal",
+      "runeword-properties": "30% Chance To Cast Level 21 Enchant When You Kill An Enemy\n+40% Faster Hit Recovery\n+370% Enhanced Damage\n-25% Target Defense\nAdds 3-14 Cold Damage (3 Seconds Duration,Normal)\n-25% To Enemy Fire Resistance\n40% Chance of Crushing Blow\n+200-300 Defense (varies)\n+10 To Strength\n+10 To Dexterity\nAll Resistances +20-30 (varies)\nRequirements -20%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "HelKoThulEthFal\nHel (15) + Ko (18) + Thul (10) + Eth (5) + Fal (19)\nPolearms {5}\nClvl Required: 41"
+    },
+    {
+      "runeword-name": {
+        "text": "Passion",
+        "href": "http://diablo2.diablowiki.net/Passion"
+      },
+      "runeword-runes": "DolOrtEldLem",
+      "runeword-properties": "+25% Increased Attack Speed\n+160-210% Enhanced Damage (varies)\n50-80% Bonus To Attack Rating (varies)\n+75% Damage To Undead\n+50 To Attack Rating Against Undead\nAdds 1-50 Lightning Damage\n+1 To Berserk\n+1 To Zeal\nHit Blinds Target +10\nHit Causes Monster To Flee 25%\n75% Extra Gold From Monsters\nLevel 3 Heart of Wolverine (12 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "DolOrtEldLem\nDol (14) + Ort (9) + Eld (2) + Lem (20)\nAll Weapons {4}\nClvl Required: 43"
+    },
+    {
+      "runeword-name": {
+        "text": "Peace",
+        "href": "http://diablo2.diablowiki.net/Peace"
+      },
+      "runeword-runes": "ShaelThulAmn",
+      "runeword-properties": "4% Chance To Cast Level 5 Slow Missiles When Struck\n2% Chance To Cast level 15 Valkyrie On Striking\n+2 To Amazon Skill Levels\n+20% Faster Hit Recovery\n+2 To Critical Strike\nCold Resist +30%\nAttacker Takes Damage of 14",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "No",
+      "runeword-1.09": "No",
+      "runeword-info": "ShaelThulAmn\nShael (13) + Thul (10) + Amn (11)\nArmor {3}\nClvl Required: 29"
+    },
+    {
+      "runeword-name": {
+        "text": "Phoenix",
+        "href": "http://diablo2.diablowiki.net/Phoenix"
+      },
+      "runeword-runes": "VexVexLoJah",
+      "runeword-properties": "Both\n100% Chance To Cast level 40 Blaze When You Level-up\n40% Chance To Cast Level 22 Firestorm On Striking\nLevel 10-15 Redemption Aura When Equipped (varies)\n+350-400% Enhanced Damage (varies)\n-28% To Enemy Fire Resistance\n+350-400 Defense Vs. Missile (varies)\n+15-21 Fire Absorb (varies)\nWeapons\nIgnores Target's Defense\n14% Mana Stolen Per Hit\n20% Deadly Strike\nShields\n+50 To Life\n+5% To Maximum Lightning Resist\n+10% To Maximum Fire Resist",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "VexVexLoJah\nVex (26) + Vex (26) + Lo (28) + Jah (31)\nWeapons & Shields {4}\nClvl Required: 65"
+    },
+    {
+      "runeword-name": {
+        "text": "Pride",
+        "href": "http://diablo2.diablowiki.net/Pride"
+      },
+      "runeword-runes": "ChamSurIoLo",
+      "runeword-properties": "25% Chance To Cast Level 17 Fire Wall When Struck\nLevel 16-20 Concentration Aura When Equipped (varies)\n260-300% Bonus To Attack Rating (varies)\n+(1*Clvl)% Damage To Demons (Based on Character Level)\nAdds 50-280 Lightning Damage\n20% Deadly Strike\nHit Blinds Target\nFreezes Target +3\n+10 To Vitality\nReplenish Life +8\n(1.875*Clvl)% Extra Gold From Monsters (Based on Character Level)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "ChamSurIoLo\nCham (32) + Sur (29) + Io (16) + Lo (28)\nPolearms {4}\nClvl Required: 67"
+    },
+    {
+      "runeword-name": {
+        "text": "Principle",
+        "href": "http://diablo2.diablowiki.net/Principle"
+      },
+      "runeword-runes": "RalGulEld",
+      "runeword-properties": "100% Chance To Cast Level 5 Holy Bolt On Striking\n+2 To Paladin Skill Levels\n+50% Damage to Undead\n+100-150 to Life (varies)\n15% Slower Stamina Drain\n+5% To Maximum Poison Resist\nFire Resist +30%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "No",
+      "runeword-1.09": "No",
+      "runeword-info": "RalGulEld\nRal (8) + Gul (25) + Eld (2)\nArmor {3}\nClvl Required: 55"
+    },
+    {
+      "runeword-name": {
+        "text": "Prudence",
+        "href": "http://diablo2.diablowiki.net/Prudence"
+      },
+      "runeword-runes": "MalTir",
+      "runeword-properties": "+25% Faster Hit Recovery\n+140-170% Enhanced Defense (varies)\nAll Resistances +25-35 (varies)\nDamage Reduced by 3\nMagic Damage Reduced by 17\n+2 To Mana After Each Kill\n+1 To Light Radius\nRepairs Durability 1 In 4 Seconds",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "MalTir\nMal (23) + Tir (3)\nArmor {2}\nClvl Required: 49"
+    },
+    {
+      "runeword-name": {
+        "text": "Radiance",
+        "href": "http://diablo2.diablowiki.net/Radiance"
+      },
+      "runeword-runes": "NefSolIth",
+      "runeword-properties": "+75% Enhanced Defense\n+30 Defense vs. Missiles\n+10 to Vitality\n+10 to Energy\n+33 to Mana\nDamage Reduced by 7\nMagic Damage Reduced by 3\n15% Damage Taken Goes to Mana\n+5 to Light Radius",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "NefSolIth\nNef (4) + Sol (12) + Ith (6)\nHeadgear {3}\nClvl Required: 27"
+    },
+    {
+      "runeword-name": {
+        "text": "Rain",
+        "href": "http://diablo2.diablowiki.net/Rain"
+      },
+      "runeword-runes": "OrtMalIth",
+      "runeword-properties": "5% Chance To Cast Level 15 Cyclone Armor When Struck\n5% Chance To Cast Level 15 Twister On Striking\n+2 To Druid Skills\n+100-150 To Mana (varies)\nLightning Resist +30%\nMagic Damage Reduced By 7\n15% Damage Taken Goes to Mana",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "No",
+      "runeword-1.09": "No",
+      "runeword-info": "OrtMalIth\nOrt (9) + Mal (23) + Ith (6)\nArmor {3}\nClvl Required: 49"
+    },
+    {
+      "runeword-name": {
+        "text": "Rhyme",
+        "href": "http://diablo2.diablowiki.net/Rhyme"
+      },
+      "runeword-runes": "ShaelEth",
+      "runeword-properties": "+40% Faster Block Rate\n20% Increased Chance of Blocking\nRegenerate Mana 15%\nAll Resistances +25\nCannot be Frozen\n50% Extra Gold from Monsters\n25% Better Chance of Getting Magic Items",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "ShaelEth\nShael (13) + Eth (5)\nShields {2}\nClvl Required: 29"
+    },
+    {
+      "runeword-name": {
+        "text": "Rift",
+        "href": "http://diablo2.diablowiki.net/Rift"
+      },
+      "runeword-runes": "HelKoLemGul",
+      "runeword-properties": "20% Chance To Cast Level 16 Tornado On Striking\n16% Chance To Cast Level 21 Frozen Orb On Attack\n20% Bonus To Attack Rating\nAdds 160-250 Magic Damage\nAdds 60-180 Fire Damage\n+5-10 To All Attributes (varies)\n+10 To Dexterity\n38% Damage Taken Goes To Mana\n75% Extra Gold From Monsters\nLevel 15 Iron Maiden (40 Charges)\nRequirements -20%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "HelKoLemGul\nHel (15) + Ko (18) + Lem (20) + Gul (25)\nPolearms & Scepters {4}\nClvl Required: 53"
+    },
+    {
+      "runeword-name": {
+        "text": "Sanctuary",
+        "href": "http://diablo2.diablowiki.net/Sanctuary_(runeword)"
+      },
+      "runeword-runes": "KoKoMal",
+      "runeword-properties": "+20% Faster Hit Recovery\n+20% Faster Block Rate\n20% Increased Chance of Blocking\n+130-160% Enhanced Defense (varies)\n+250 Defense vs. Missile\n+20 To Dexterity\nAll Resistances +50-70 (varies)\nMagic Damage Reduced By 7\nLevel 12 Slow Missiles (60 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "KoKoMal\nKo (18) + Ko (18) + Mal (23)\nShields {3}\nClvl Required: 49"
+    },
+    {
+      "runeword-name": {
+        "text": "Silence",
+        "href": "http://diablo2.diablowiki.net/Silence"
+      },
+      "runeword-runes": "DolEldHelIstTirVex",
+      "runeword-properties": "+2 to All Skills\n+20% Increased Attack Speed\n+20% Faster Hit Recovery\n+200% Enhanced Damage\n+75% Damage To Undead\n+50 to Attack Rating Against Undead\n11% Mana Stolen Per Hit\nHit Blinds Target +33\nHit Causes Monster to Flee 25%\nAll Resistances +75\n+2 to Mana After Each Kill\n30% Better Chance of Getting Magic Items\nRequirements -20%",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "DolEldHelIstTirVex\nDol (14) + Eld (2) + Hel (15) + Ist (24) + Tir (3) + Vex (26) \nWeapons {6}\nClvl Required: 55"
+    },
+    {
+      "runeword-name": {
+        "text": "Smoke",
+        "href": "http://diablo2.diablowiki.net/Smoke"
+      },
+      "runeword-runes": "NefLum",
+      "runeword-properties": "+20% Faster Hit Recovery\n+75% Enhanced Defense\n+280 Defense vs. Missiles\n+10 to Energy\nAll Resistances +50\n-1 to Light Radius\nLevel 6 Weaken (18 charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "NefLum\nNef (4) + Lum (17)\nArmor {2}\nClvl Required: 37"
+    },
+    {
+      "runeword-name": {
+        "text": "Spirit",
+        "href": "http://diablo2.diablowiki.net/Spirit"
+      },
+      "runeword-runes": "TalThulOrtAmn",
+      "runeword-properties": "Both\n+2 To All Skills\n+25-35% Faster Cast Rate (varies)\n+55% Faster Hit Recovery\n+250 Defense Vs. Missile\n+22 To Vitality\n+89-112 To Mana (varies)\n+3-8 Magic Absorb (varies)\nShields\nCold Resist +35%\nLightning Resist +35%\nPoison Resist +35%\nAttacker Takes Damage of 14\nSwords\nAdds 1-50 Lightning Damage\nAdds 3-14 Cold Damage (3 Sec,Normal)\n+75 Poison Damage Over 5 Seconds\n7% Life Stolen Per Hit",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "TalThulOrtAmn\nTal (7) + Thul (10) + Ort (9) + Amn (11)\nShields & Swords {4}\nClvl Required: 25"
+    },
+    {
+      "runeword-name": {
+        "text": "Splendor",
+        "href": "http://diablo2.diablowiki.net/Splendor"
+      },
+      "runeword-runes": "EthLum",
+      "runeword-properties": "+1 To All Skills\n+10% Faster Cast Rate\n+20% Faster Block Rate\n+60-100% Enhanced Defense (varies)\n+10 To Energy\nRegenerate Mana 15%\n50% Extra Gold From Monsters\n20% Better Chance of Getting Magic Items\n+3 To Light Radius",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "EthLum\nEth (5) + Lum (17)\nShields {2}\nClvl Required: 37"
+    },
+    {
+      "runeword-name": {
+        "text": "Steel",
+        "href": "http://diablo2.diablowiki.net/Steel"
+      },
+      "runeword-runes": "TirEl",
+      "runeword-properties": "+25% Increased Attack Speed\n+20% Enhanced Damage\n+3 to Minimum Damage\n+3 to Maximum Damage\n+50 to Attack Rating\n50% Chance of Open Wounds\n+2 to Mana after each Kill\n+1 to Light Radius",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "TirEl\nTir (3) + El (1)\nSwords, Axes, Maces {2}\nClvl Required: 13"
+    },
+    {
+      "runeword-name": {
+        "text": "Stone",
+        "href": "http://diablo2.diablowiki.net/Stone"
+      },
+      "runeword-runes": "",
+      "runeword-properties": "+60% Faster Hit Recovery\n+250-290% Enhanced Defense (varies)\n+300 Defense Vs. Missile\n+16 To Strength\n+16 To Vitality\n+10 To Energy\nAll Resistances +15\nLevel 16 Molten Boulder (80 Charges)\nLevel 16 Clay Golem (16 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "ShaelUmPulLum\nShael (13) + Um (22) + Pul (21) + Lum (17)\nArmor {4}\nClvl Required: 47"
+    },
+    {
+      "runeword-name": {
+        "text": "Strength",
+        "href": "http://diablo2.diablowiki.net/Strength_(runeword)"
+      },
+      "runeword-runes": "AmnTir",
+      "runeword-properties": "+35% Enhanced Damage\n7% Life stolen per hit\n25% Chance of Crushing Blow\n+20 to Strength\n+10 to Vitality\n+2 to Mana after each Kill",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "AmnTir\nAmn (11) + Tir (3)\nMelee Weapons {2}\nClvl Required: 25"
+    },
+    {
+      "runeword-name": {
+        "text": "Treachery",
+        "href": "http://diablo2.diablowiki.net/Treachery"
+      },
+      "runeword-runes": "ShaelThulLem",
+      "runeword-properties": "5% Chance To Cast Level 15 Fade When Struck\n25% Chance To Cast level 15 Venom On Striking\n+2 To Assassin Skills\n+45% Increased Attack Speed\n+20% Faster Hit Recovery\nCold Resist +30%\n50% Extra Gold From Monsters",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "No",
+      "runeword-1.09": "No",
+      "runeword-info": "ShaelThulLem\nShael (13) + Thul (10) + Lem (20)\nArmor {3}\nClvl Required: 43"
+    },
+    {
+      "runeword-name": {
+        "text": "Venom",
+        "href": "http://diablo2.diablowiki.net/Venom_(runeword)"
+      },
+      "runeword-runes": "TalDolMal",
+      "runeword-properties": "Ignore Target's Defense\n+273 Poison Damage Over 6 Seconds\n7% Mana Stolen Per Hit\nPrevent Monster Heal\nHit Causes Monster To Flee 25%\nLevel 13 Poison Nova (11 Charges)\nLevel 15 Poison Explosion (27 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "TalDolMal\nTal (7) + Dol (14) + Mal (23)\nAll Weapons {3}\nClvl Required: 49"
+    },
+    {
+      "runeword-name": {
+        "text": "Voice of Reason",
+        "href": "http://diablo2.diablowiki.net/Voice_of_Reason"
+      },
+      "runeword-runes": "LemKoElEld",
+      "runeword-properties": "15% Chance To Cast Level 13 Frozen Orb On Striking\n18% Chance To Cast Level 20 Ice Blast On Striking\n+50 To Attack Rating\n+220-350% Damage To Demons (varies)\n+355-375% Damage To Undead (varies)\n+50 To Attack Rating Against Undead\nAdds 100-220 Cold Damage\n-24% To Enemy Cold Resistance\n+10 To Dexterity\nCannot Be Frozen\n75% Extra Gold From Monsters\n+1 To Light Radius",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "LemKoElEld\nLem (20) + Ko (18) + El (1) + Eld (2)\nMaces & Swords {4}\nClvl Required: 43"
+    },
+    {
+      "runeword-name": {
+        "text": "Wealth",
+        "href": "http://diablo2.diablowiki.net/Wealth"
+      },
+      "runeword-runes": "LemKoTir",
+      "runeword-properties": "+10 to Dexterity\n+2 to Mana After Each Kill\n300% Extra Gold From Monsters\n100% Better Chance of Getting Magic Items",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "LemKoTir\nLem (20) + Ko (18) + Tir (3)\nArmor {3}\nClvl Required: 43"
+    },
+    {
+      "runeword-name": {
+        "text": "White",
+        "href": "http://diablo2.diablowiki.net/White"
+      },
+      "runeword-runes": "DolIo",
+      "runeword-properties": "+3 to Poison and Bone Skills (Necromancer Only)\n+20% Faster Cast Rate\n+2 to Bone Spear (Necromancer Only)\n+4 to Skeleton Mastery (Necromancer Only)\n+3 to Bone Armor (Necromancer Only)\nHit causes monster to flee 25%\n+10 to vitality\n+13 to mana\nMagic Damage Reduced by 4",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "DolIo\nDol (14) + Io (16)\nWands {2}\nClvl Required: 35"
+    },
+    {
+      "runeword-name": {
+        "text": "Wind",
+        "href": "http://diablo2.diablowiki.net/Wind"
+      },
+      "runeword-runes": "SurEl",
+      "runeword-properties": "10% Chance To Cast Level 9 Tornado On Striking\n+20% Faster Run/Walk\n+40% Increased Attack Speed\n+15% Faster Hit Recovery\n+120-160% Enhanced Damage (varies)\n-50% Target Defense\n+50 To Attack Rating\nHit Blinds Target\n+1 To Light Radius\nLevel 13 Twister (127 Charges)",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "SurEl\nSur (29) + El (1)\nMelee Weapons {2}\nClvl Required: 61"
+    },
+    {
+      "runeword-name": {
+        "text": "Wrath",
+        "href": "http://diablo2.diablowiki.net/Wrath"
+      },
+      "runeword-runes": "PulLumBerMal",
+      "runeword-properties": "30% Chance To Cast Level 1 Decrepify On Striking\n5% Chance To Cast Level 10 Life Tap On Striking\n+375% Damage To Demons\n+100 To Attack Rating Against Demons\n+250-300% Damage To Undead (varies)\nAdds 85-120 Magic Damage\nAdds 41-240 Lightning Damage\n20% Chance of Crushing Blow\nPrevent Monster Heal\n+10 To Energy\nCannot Be Frozen",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "No",
+      "runeword-info": "PulLumBerMal\nPul (21) + Lum (17) + Ber (30) + Mal (23)\nMissile Weapons {4}\nClvl Required: 63"
+    },
+    {
+      "runeword-name": {
+        "text": "Zephyr",
+        "href": "http://diablo2.diablowiki.net/Zephyr"
+      },
+      "runeword-runes": "OrtEth",
+      "runeword-properties": "7% Chance to Cast Level 1 Twister When Struck\n+25% Faster Run/Walk\n+25% Increased Attack Speed\n+33% Enhanced Damage\n-25% Target Defense\n+66 to Attack Rating\nAdds 1-50 lightning damage\n+25 Defense",
+      "runeword-1.11": "Yes",
+      "runeword-1.10": "Yes",
+      "runeword-1.09": "Yes",
+      "runeword-info": "OrtEth\nOrt (9) + Eth (5)\nMissile Weapons {2}\nClvl Required: 21"
+    }
+  ]
+}

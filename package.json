@@ -1,0 +1,12 @@
+{
+  "name": "d2-runeword-search",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "elm": "^0.16.0",
+    "elm-live": "^2.1.0"
+  },
+  "dependencies": {
+    "bulma": "0.0.17"
+  }
+}
