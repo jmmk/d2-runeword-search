@@ -2,7 +2,7 @@ module Main (..) where
 
 import StartApp
 import Html exposing (..)
-import Html.Attributes exposing (id, class, style)
+import Html.Attributes exposing (id, class, style, type')
 import Html.Events as Events
 import Effects exposing (Effects, Never)
 import Task
@@ -14,6 +14,7 @@ type alias Model =
   { keywords : Maybe (List String)
   , runewords : List Runeword
   , searchType : SearchType
+  , socketType : SocketType
   }
 
 
@@ -22,6 +23,7 @@ initialModel =
   { keywords = Nothing
   , runewords = runewords
   , searchType = All
+  , socketType = AnySockets
   }
 
 
@@ -33,6 +35,7 @@ init =
 type Action
   = KeywordSearch String
   | ChangeSearchType SearchType
+  | ChangeSocketType SocketType
 
 
 renderProperties : List String -> Html.Html
@@ -186,11 +189,15 @@ renderSearchBar address =
     [ class "control is-horizontal has-addons" ]
     [ div
         [ class "control-label" ]
-        [ label [ class "label" ] [ text "Search: " ]
-        ]
+        [ label [ class "label" ] [ text "Search" ] ]
     , div
         [ class "control" ]
-        [ input [ class "input", Events.on "input" Events.targetValue (\v -> Signal.message address (KeywordSearch v)) ] []
+        [ input
+            [ class "input is-primary"
+            , type' "text"
+            , Events.on "input" Events.targetValue (\v -> Signal.message address (KeywordSearch v))
+            ]
+            []
         , span
             [ class "select" ]
             [ select
@@ -198,6 +205,65 @@ renderSearchBar address =
                 (List.map (\t -> option [] [ text (toString t) ]) [ All, Name, Runes, Properties ])
             ]
         ]
+    ]
+
+
+type SocketType
+  = AnySockets
+  | Two
+  | Three
+  | Four
+  | Five
+  | Six
+
+
+socketsToString : SocketType -> String
+socketsToString socketType =
+  case socketType of
+    AnySockets ->
+      "Any"
+
+    Two ->
+      "2"
+
+    Three ->
+      "3"
+
+    Four ->
+      "4"
+
+    Five ->
+      "5"
+
+    Six ->
+      "6"
+
+
+renderSocketsFilter : Signal.Address Action -> Html.Html
+renderSocketsFilter address =
+  div
+    [ class "control is-horizontal" ]
+    [ div
+        [ class "control-label" ]
+        [ label [ class "label" ] [ text "Sockets" ] ]
+    , div
+        [ class "control" ]
+        [ span
+            [ class "select" ]
+            [ select
+                [ class "input is-secondary", type' "number" ]
+                (List.map (\s -> option [] [ text (socketsToString s) ]) [ AnySockets, Two, Three, Four, Five, Six ])
+            ]
+        ]
+    ]
+
+
+renderFilters : Signal.Address Action -> Html.Html
+renderFilters address =
+  form
+    []
+    [ renderSearchBar address
+    , renderSocketsFilter address
     ]
 
 
@@ -256,8 +322,8 @@ view address model =
                     [ class "column is-half" ]
                     [ renderRunewordsList model ]
                 , div
-                    [ class "column is-half" ]
-                    [ renderSearchBar address ]
+                    [ id "filters", class "column is-half" ]
+                    [ renderFilters address ]
                 ]
             ]
         ]
@@ -280,6 +346,9 @@ update action model =
 
       ChangeSearchType searchType ->
         ( { model | searchType = searchType }, Effects.none )
+
+      ChangeSocketType socketType ->
+        ( { model | socketType = socketType }, Effects.none )
 
 
 app : StartApp.App Model
