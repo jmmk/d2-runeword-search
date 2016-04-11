@@ -114,7 +114,7 @@ filterRunewords keywords runewords searchType =
     all =
       (\rw -> String.join " " [ (name rw), (runes rw), (properties rw) ])
 
-    searchText =
+    searchFn =
       case searchType of
         Name ->
           name
@@ -128,7 +128,7 @@ filterRunewords keywords runewords searchType =
         _ ->
           all
   in
-    List.filter (\rw -> List.all (\kw -> keywordMatch kw (searchText rw)) keywords) runewords
+    List.filter (\rw -> List.all (\kw -> keywordMatch kw (searchFn rw)) keywords) runewords
 
 
 renderRunewordsList : Model -> Html.Html
