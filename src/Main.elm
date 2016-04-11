@@ -102,19 +102,31 @@ keywordMatch keyword searchText =
 filterRunewords : List String -> List Runeword -> SearchType -> List Runeword
 filterRunewords keywords runewords searchType =
   let
+    name =
+      (\rw -> rw.name)
+
+    runes =
+      (\rw -> String.join " " (List.map toString rw.runes))
+
+    properties =
+      (\rw -> String.join " " rw.properties)
+
+    all =
+      (\rw -> String.join " " [ (name rw), (runes rw), (properties rw) ])
+
     searchText =
       case searchType of
         Name ->
-          (\runeword -> runeword.name)
+          name
 
         Runes ->
-          (\runeword -> String.join "" (List.map toString runeword.runes))
+          runes
 
         Properties ->
-          (\runeword -> String.join " " runeword.properties)
+          properties
 
         _ ->
-          (\runeword -> runeword.name)
+          all
   in
     List.filter (\rw -> List.all (\kw -> keywordMatch kw (searchText rw)) keywords) runewords
 
