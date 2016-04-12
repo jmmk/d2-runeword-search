@@ -14,7 +14,8 @@ type alias Model =
   { keywords : Maybe (List String)
   , runewords : List Runeword
   , searchType : SearchType
-  , socketType : SocketType
+  , minSockets : SocketType
+  , maxSockets : SocketType
   }
 
 
@@ -23,7 +24,8 @@ initialModel =
   { keywords = Nothing
   , runewords = runewords
   , searchType = All
-  , socketType = AnySockets
+  , minSockets = AnySockets
+  , maxSockets = AnySockets
   }
 
 
@@ -35,7 +37,8 @@ init =
 type Action
   = KeywordSearch String
   | ChangeSearchType SearchType
-  | ChangeSocketType SocketType
+  | ChangeMinSockets SocketType
+  | ChangeMaxSockets SocketType
 
 
 renderProperties : List String -> Html.Html
@@ -102,36 +105,65 @@ keywordMatch keyword searchText =
   String.contains (String.toLower keyword) (String.toLower searchText)
 
 
-filterRunewords : List String -> List Runeword -> SearchType -> List Runeword
-filterRunewords keywords runewords searchType =
+applySearchFilter : Model -> Model
+applySearchFilter model =
   let
-    name =
-      (\rw -> rw.name)
-
-    runes =
-      (\rw -> String.join " " (List.map toString rw.runes))
-
-    properties =
-      (\rw -> String.join " " rw.properties)
-
-    all =
-      (\rw -> String.join " " [ (name rw), (runes rw), (properties rw) ])
-
-    searchFn =
-      case searchType of
-        Name ->
-          name
-
-        Runes ->
-          runes
-
-        Properties ->
-          properties
-
-        _ ->
-          all
+    { keywords, runewords, searchType } =
+      model
   in
-    List.filter (\rw -> List.all (\kw -> keywordMatch kw (searchFn rw)) keywords) runewords
+    case keywords of
+      Nothing ->
+        model
+
+      Just keywords ->
+        let
+          name =
+            (\rw -> rw.name)
+
+          runes =
+            (\rw -> String.join " " (List.map toString rw.runes))
+
+          properties =
+            (\rw -> String.join " " rw.properties)
+
+          all =
+            (\rw -> String.join " " [ (name rw), (runes rw), (properties rw) ])
+
+          searchFn =
+            case searchType of
+              Name ->
+                name
+
+              Runes ->
+                runes
+
+              Properties ->
+                properties
+
+              _ ->
+                all
+
+          filtered =
+            List.filter (\rw -> List.all (\kw -> keywordMatch kw (searchFn rw)) keywords) runewords
+        in
+          { model | runewords = filtered }
+
+
+applySocketFilter : Model -> Model
+applySocketFilter model =
+  let
+    { runewords, minSockets, maxSockets } =
+      model
+
+    filtered =
+      List.filter (\rw -> compareSocketType rw.sockets minSockets GT && compareSocketType rw.sockets maxSockets LT) runewords
+  in
+    { model | runewords = filtered }
+
+
+applyFilters : Model -> Model
+applyFilters model =
+  model |> applySearchFilter |> applySocketFilter
 
 
 renderRunewordsList : Model -> Html.Html
@@ -141,12 +173,7 @@ renderRunewordsList model =
       model
 
     filtered =
-      case keywords of
-        Nothing ->
-          runewords
-
-        Just keywords ->
-          filterRunewords keywords runewords searchType
+      applyFilters model |> .runewords
   in
     div
       [ class "columns" ]
@@ -217,8 +244,8 @@ type SocketType
   | Six
 
 
-socketsToString : SocketType -> String
-socketsToString socketType =
+socketTypeToString : SocketType -> String
+socketTypeToString socketType =
   case socketType of
     AnySockets ->
       "Any"
@@ -239,22 +266,75 @@ socketsToString socketType =
       "6"
 
 
-renderSocketsFilter : Signal.Address Action -> Html.Html
-renderSocketsFilter address =
+compareSocketType : Int -> SocketType -> Order -> Bool
+compareSocketType sockets socketType ord =
+  case ord of
+    GT ->
+      case socketType of
+        AnySockets ->
+          True
+
+        Two ->
+          sockets >= 2
+
+        Three ->
+          sockets >= 3
+
+        Four ->
+          sockets >= 4
+
+        Five ->
+          sockets >= 5
+
+        Six ->
+          sockets >= 6
+
+    _ ->
+      case socketType of
+        AnySockets ->
+          True
+
+        Two ->
+          sockets <= 2
+
+        Three ->
+          sockets <= 3
+
+        Four ->
+          sockets <= 4
+
+        Five ->
+          sockets <= 5
+
+        Six ->
+          sockets <= 6
+
+
+renderSocketFilter : Signal.Address Action -> String -> (SocketType -> Action) -> Html.Html
+renderSocketFilter address name action =
   div
     [ class "control is-horizontal" ]
     [ div
         [ class "control-label" ]
-        [ label [ class "label" ] [ text "Sockets" ] ]
+        [ label [ class "label" ] [ text name ] ]
     , div
         [ class "control" ]
         [ span
             [ class "select" ]
             [ select
-                [ class "input is-secondary", type' "number" ]
-                (List.map (\s -> option [] [ text (socketsToString s) ]) [ AnySockets, Two, Three, Four, Five, Six ])
+                [ class "input is-secondary" ]
+                (List.map (\s -> option [] [ text (socketTypeToString s) ]) [ AnySockets, Two, Three, Four, Five, Six ])
             ]
         ]
+    ]
+
+
+renderSocketFilters : Signal.Address Action -> Html.Html
+renderSocketFilters address =
+  div
+    []
+    [ renderSocketFilter address "Min Sockets:" ChangeMinSockets
+    , renderSocketFilter address "Max Sockets:" ChangeMaxSockets
     ]
 
 
@@ -263,7 +343,7 @@ renderFilters address =
   form
     []
     [ renderSearchBar address
-    , renderSocketsFilter address
+    , renderSocketFilters address
     ]
 
 
@@ -347,8 +427,11 @@ update action model =
       ChangeSearchType searchType ->
         ( { model | searchType = searchType }, Effects.none )
 
-      ChangeSocketType socketType ->
-        ( { model | socketType = socketType }, Effects.none )
+      ChangeMinSockets socketType ->
+        ( { model | minSockets = socketType }, Effects.none )
+
+      ChangeMaxSockets socketType ->
+        ( { model | maxSockets = socketType }, Effects.none )
 
 
 app : StartApp.App Model
