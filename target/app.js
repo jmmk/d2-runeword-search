@@ -13232,68 +13232,183 @@ Elm.Main.make = function (_elm) {
       var _p0 = A2($Debug.log,"model",model);
       var _p1 = A2($Debug.log,"action",action);
       var _p2 = action;
-      if (_p2.ctor === "KeywordSearch") {
-            return {ctor: "_Tuple2"
-                   ,_0: _U.update(model,{keywords: parseSearchKeywords(_p2._0)})
-                   ,_1: $Effects.none};
+      switch (_p2.ctor)
+      {case "KeywordSearch": return {ctor: "_Tuple2"
+                                    ,_0: _U.update(model,{keywords: parseSearchKeywords(_p2._0)})
+                                    ,_1: $Effects.none};
+         case "ChangeSearchType": return {ctor: "_Tuple2"
+                                         ,_0: _U.update(model,{searchType: _p2._0})
+                                         ,_1: $Effects.none};
+         case "ChangeMinSockets": return {ctor: "_Tuple2"
+                                         ,_0: _U.update(model,{minSockets: _p2._0})
+                                         ,_1: $Effects.none};
+         default: return {ctor: "_Tuple2"
+                         ,_0: _U.update(model,{maxSockets: _p2._0})
+                         ,_1: $Effects.none};}
+   });
+   var compareSocketType = F3(function (sockets,socketType,ord) {
+      var _p3 = ord;
+      if (_p3.ctor === "GT") {
+            var _p4 = socketType;
+            switch (_p4.ctor)
+            {case "AnySockets": return true;
+               case "Two": return _U.cmp(sockets,2) > -1;
+               case "Three": return _U.cmp(sockets,3) > -1;
+               case "Four": return _U.cmp(sockets,4) > -1;
+               case "Five": return _U.cmp(sockets,5) > -1;
+               default: return _U.cmp(sockets,6) > -1;}
          } else {
-            return {ctor: "_Tuple2"
-                   ,_0: _U.update(model,{searchType: _p2._0})
-                   ,_1: $Effects.none};
+            var _p5 = socketType;
+            switch (_p5.ctor)
+            {case "AnySockets": return true;
+               case "Two": return _U.cmp(sockets,2) < 1;
+               case "Three": return _U.cmp(sockets,3) < 1;
+               case "Four": return _U.cmp(sockets,4) < 1;
+               case "Five": return _U.cmp(sockets,5) < 1;
+               default: return _U.cmp(sockets,6) < 1;}
          }
+   });
+   var socketTypeToString = function (socketType) {
+      var _p6 = socketType;
+      switch (_p6.ctor)
+      {case "AnySockets": return "Any";
+         case "Two": return "2";
+         case "Three": return "3";
+         case "Four": return "4";
+         case "Five": return "5";
+         default: return "6";}
+   };
+   var Six = {ctor: "Six"};
+   var Five = {ctor: "Five"};
+   var Four = {ctor: "Four"};
+   var Three = {ctor: "Three"};
+   var Two = {ctor: "Two"};
+   var AnySockets = {ctor: "AnySockets"};
+   var stringToSocketType = function (string) {
+      var _p7 = string;
+      switch (_p7)
+      {case "2": return Two;
+         case "3": return Three;
+         case "4": return Four;
+         case "5": return Five;
+         case "6": return Six;
+         default: return AnySockets;}
+   };
+   var renderSocketFilter = F3(function (address,name,action) {
+      return A2($Html.div,
+      _U.list([$Html$Attributes.$class("control is-horizontal")]),
+      _U.list([A2($Html.div,
+              _U.list([$Html$Attributes.$class("control-label")]),
+              _U.list([A2($Html.label,
+              _U.list([$Html$Attributes.$class("label")]),
+              _U.list([$Html.text(name)]))]))
+              ,A2($Html.div,
+              _U.list([$Html$Attributes.$class("control")]),
+              _U.list([A2($Html.span,
+              _U.list([$Html$Attributes.$class("select")]),
+              _U.list([A2($Html.select,
+              _U.list([$Html$Attributes.$class("input is-secondary")
+                      ,A3($Html$Events.on,
+                      "change",
+                      $Html$Events.targetValue,
+                      function (v) {
+                         return A2($Signal.message,
+                         address,
+                         action(stringToSocketType(v)));
+                      })]),
+              A2($List.map,
+              function (s) {
+                 return A2($Html.option,
+                 _U.list([]),
+                 _U.list([$Html.text(socketTypeToString(s))]));
+              },
+              _U.list([AnySockets,Two,Three,Four,Five,Six])))]))]))]));
    });
    var Properties = {ctor: "Properties"};
    var Runes = {ctor: "Runes"};
    var Name = {ctor: "Name"};
    var All = {ctor: "All"};
    var stFromString = function (value) {
-      var _p3 = value;
-      switch (_p3)
+      var _p8 = value;
+      switch (_p8)
       {case "All": return All;
          case "Name": return Name;
          case "Runes": return Runes;
          case "Properties": return Properties;
          default: return All;}
    };
+   var applySocketFilter = function (model) {
+      var _p9 = model;
+      var runewords = _p9.runewords;
+      var minSockets = _p9.minSockets;
+      var maxSockets = _p9.maxSockets;
+      var filtered = A2($List.filter,
+      function (rw) {
+         return A3(compareSocketType,
+         rw.sockets,
+         minSockets,
+         $Basics.GT) && A3(compareSocketType,
+         rw.sockets,
+         maxSockets,
+         $Basics.LT);
+      },
+      runewords);
+      return _U.update(model,{runewords: filtered});
+   };
    var keywordMatch = F2(function (keyword,searchText) {
       return A2($String.contains,
       $String.toLower(keyword),
       $String.toLower(searchText));
    });
-   var filterRunewords = F3(function (keywords,
-   runewords,
-   searchType) {
-      var searchText = function () {
-         var _p4 = searchType;
-         switch (_p4.ctor)
-         {case "Name": return function (runeword) {
-                 return runeword.name;
-              };
-            case "Runes": return function (runeword) {
-                 return A2($String.join,
-                 "",
-                 A2($List.map,$Basics.toString,runeword.runes));
-              };
-            case "Properties": return function (runeword) {
-                 return A2($String.join," ",runeword.properties);
-              };
-            default: return function (runeword) {
-                 return runeword.name;
-              };}
-      }();
-      return A2($List.filter,
-      function (rw) {
-         return A2($List.all,
-         function (kw) {
-            return A2(keywordMatch,kw,searchText(rw));
-         },
-         keywords);
-      },
-      runewords);
-   });
+   var applySearchFilter = function (model) {
+      var _p10 = model;
+      var keywords = _p10.keywords;
+      var runewords = _p10.runewords;
+      var searchType = _p10.searchType;
+      var _p11 = keywords;
+      if (_p11.ctor === "Nothing") {
+            return model;
+         } else {
+            var properties = function (rw) {
+               return A2($String.join," ",rw.properties);
+            };
+            var runes = function (rw) {
+               return A2($String.join,
+               " ",
+               A2($List.map,$Basics.toString,rw.runes));
+            };
+            var name = function (rw) {    return rw.name;};
+            var all = function (rw) {
+               return A2($String.join,
+               " ",
+               _U.list([name(rw),runes(rw),properties(rw)]));
+            };
+            var searchFn = function () {
+               var _p12 = searchType;
+               switch (_p12.ctor)
+               {case "Name": return name;
+                  case "Runes": return runes;
+                  case "Properties": return properties;
+                  default: return all;}
+            }();
+            var filtered = A2($List.filter,
+            function (rw) {
+               return A2($List.all,
+               function (kw) {
+                  return A2(keywordMatch,kw,searchFn(rw));
+               },
+               _p11._0);
+            },
+            runewords);
+            return _U.update(model,{runewords: filtered});
+         }
+   };
+   var applyFilters = function (model) {
+      return applySocketFilter(applySearchFilter(model));
+   };
    var showPatch = function (patch) {
-      var _p5 = patch;
-      switch (_p5.ctor)
+      var _p13 = patch;
+      switch (_p13.ctor)
       {case "OneEleven": return "1.11";
          case "OneTen": return "1.10";
          default: return "1.09";}
@@ -13358,18 +13473,13 @@ Elm.Main.make = function (_elm) {
                       _U.list([renderProperties(runeword.properties)]))]))]));
    };
    var renderRunewordsList = function (model) {
-      var _p6 = model;
-      var runewords = _p6.runewords;
-      var keywords = _p6.keywords;
-      var searchType = _p6.searchType;
-      var filtered = function () {
-         var _p7 = keywords;
-         if (_p7.ctor === "Nothing") {
-               return runewords;
-            } else {
-               return A3(filterRunewords,_p7._0,runewords,searchType);
-            }
-      }();
+      var filtered = function (_) {
+         return _.runewords;
+      }(applyFilters(model));
+      var _p14 = model;
+      var runewords = _p14.runewords;
+      var keywords = _p14.keywords;
+      var searchType = _p14.searchType;
       return A2($Html.div,
       _U.list([$Html$Attributes.$class("columns")]),
       _U.list([A2($Html.div,
@@ -13377,6 +13487,24 @@ Elm.Main.make = function (_elm) {
       _U.list([A2($Html.div,
       _U.list([]),
       A2($List.map,renderRuneword,filtered))]))]));
+   };
+   var ChangeMaxSockets = function (a) {
+      return {ctor: "ChangeMaxSockets",_0: a};
+   };
+   var ChangeMinSockets = function (a) {
+      return {ctor: "ChangeMinSockets",_0: a};
+   };
+   var renderSocketFilters = function (address) {
+      return A2($Html.div,
+      _U.list([]),
+      _U.list([A3(renderSocketFilter,
+              address,
+              "Min Sockets:",
+              ChangeMinSockets)
+              ,A3(renderSocketFilter,
+              address,
+              "Max Sockets:",
+              ChangeMaxSockets)]));
    };
    var ChangeSearchType = function (a) {
       return {ctor: "ChangeSearchType",_0: a};
@@ -13391,11 +13519,12 @@ Elm.Main.make = function (_elm) {
               _U.list([$Html$Attributes.$class("control-label")]),
               _U.list([A2($Html.label,
               _U.list([$Html$Attributes.$class("label")]),
-              _U.list([$Html.text("Search: ")]))]))
+              _U.list([$Html.text("Search")]))]))
               ,A2($Html.div,
               _U.list([$Html$Attributes.$class("control")]),
               _U.list([A2($Html.input,
-                      _U.list([$Html$Attributes.$class("input")
+                      _U.list([$Html$Attributes.$class("input is-primary")
+                              ,$Html$Attributes.type$("text")
                               ,A3($Html$Events.on,
                               "input",
                               $Html$Events.targetValue,
@@ -13422,6 +13551,12 @@ Elm.Main.make = function (_elm) {
                       },
                       _U.list([All,Name,Runes,Properties])))]))]))]));
    };
+   var renderFilters = function (address) {
+      return A2($Html.form,
+      _U.list([]),
+      _U.list([renderSearchBar(address)
+              ,renderSocketFilters(address)]));
+   };
    var view = F2(function (address,model) {
       return A2($Html.div,
       _U.list([$Html$Attributes.id("app-body")]),
@@ -13436,13 +13571,16 @@ Elm.Main.make = function (_elm) {
                       _U.list([$Html$Attributes.$class("column is-half")]),
                       _U.list([renderRunewordsList(model)]))
                       ,A2($Html.div,
-                      _U.list([$Html$Attributes.$class("column is-half")]),
-                      _U.list([renderSearchBar(address)]))]))]))]))
+                      _U.list([$Html$Attributes.id("filters")
+                              ,$Html$Attributes.$class("column is-half")]),
+                      _U.list([renderFilters(address)]))]))]))]))
               ,renderFooter]));
    });
    var initialModel = {keywords: $Maybe.Nothing
                       ,runewords: $Runewords.runewords
-                      ,searchType: All};
+                      ,searchType: All
+                      ,minSockets: AnySockets
+                      ,maxSockets: AnySockets};
    var init = {ctor: "_Tuple2",_0: initialModel,_1: $Effects.none};
    var app = $StartApp.start({init: init
                              ,update: update
@@ -13451,8 +13589,12 @@ Elm.Main.make = function (_elm) {
    var main = app.html;
    var runner = Elm.Native.Task.make(_elm).performSignal("runner",
    app.tasks);
-   var Model = F3(function (a,b,c) {
-      return {keywords: a,runewords: b,searchType: c};
+   var Model = F5(function (a,b,c,d,e) {
+      return {keywords: a
+             ,runewords: b
+             ,searchType: c
+             ,minSockets: d
+             ,maxSockets: e};
    });
    return _elm.Main.values = {_op: _op
                              ,Model: Model
@@ -13460,12 +13602,16 @@ Elm.Main.make = function (_elm) {
                              ,init: init
                              ,KeywordSearch: KeywordSearch
                              ,ChangeSearchType: ChangeSearchType
+                             ,ChangeMinSockets: ChangeMinSockets
+                             ,ChangeMaxSockets: ChangeMaxSockets
                              ,renderProperties: renderProperties
                              ,showPatch: showPatch
                              ,renderAttributes: renderAttributes
                              ,renderRuneword: renderRuneword
                              ,keywordMatch: keywordMatch
-                             ,filterRunewords: filterRunewords
+                             ,applySearchFilter: applySearchFilter
+                             ,applySocketFilter: applySocketFilter
+                             ,applyFilters: applyFilters
                              ,renderRunewordsList: renderRunewordsList
                              ,All: All
                              ,Name: Name
@@ -13473,6 +13619,18 @@ Elm.Main.make = function (_elm) {
                              ,Properties: Properties
                              ,stFromString: stFromString
                              ,renderSearchBar: renderSearchBar
+                             ,AnySockets: AnySockets
+                             ,Two: Two
+                             ,Three: Three
+                             ,Four: Four
+                             ,Five: Five
+                             ,Six: Six
+                             ,socketTypeToString: socketTypeToString
+                             ,stringToSocketType: stringToSocketType
+                             ,compareSocketType: compareSocketType
+                             ,renderSocketFilter: renderSocketFilter
+                             ,renderSocketFilters: renderSocketFilters
+                             ,renderFilters: renderFilters
                              ,parseSearchKeywords: parseSearchKeywords
                              ,renderHero: renderHero
                              ,renderFooter: renderFooter
