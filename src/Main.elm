@@ -266,6 +266,28 @@ socketTypeToString socketType =
       "6"
 
 
+stringToSocketType : String -> SocketType
+stringToSocketType string =
+  case string of
+    "2" ->
+      Two
+
+    "3" ->
+      Three
+
+    "4" ->
+      Four
+
+    "5" ->
+      Five
+
+    "6" ->
+      Six
+
+    _ ->
+      AnySockets
+
+
 compareSocketType : Int -> SocketType -> Order -> Bool
 compareSocketType sockets socketType ord =
   case ord of
@@ -322,7 +344,9 @@ renderSocketFilter address name action =
         [ span
             [ class "select" ]
             [ select
-                [ class "input is-secondary" ]
+                [ class "input is-secondary"
+                , Events.on "change" Events.targetValue (\v -> Signal.message address (action (stringToSocketType v)))
+                ]
                 (List.map (\s -> option [] [ text (socketTypeToString s) ]) [ AnySockets, Two, Three, Four, Five, Six ])
             ]
         ]
