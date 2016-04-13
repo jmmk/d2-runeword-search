@@ -1,5 +1,7 @@
 module Runewords (..) where
 
+import Patch exposing (Patch(..))
+
 
 type Rune
   = El
@@ -42,12 +44,6 @@ type ItemType
   | Weapon
   | Shield
   | Helm
-
-
-type Patch
-  = OneNine
-  | OneTen
-  | OneEleven
 
 
 type alias Clvl =

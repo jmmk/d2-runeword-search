@@ -7,16 +7,19 @@ import Html.Events as Events
 import Effects exposing (Effects, Never)
 import Task
 import String
-import Runewords exposing (Runeword, Patch(..), runewords)
+import Runewords exposing (Runeword, runewords)
 import Dict exposing (Dict)
+import Patch exposing (Patch)
+import Sockets exposing (Sockets)
+import SearchType exposing (SearchType)
 
 
 type alias Model =
   { keywords : Maybe (List String)
   , runewords : List Runeword
   , searchType : SearchType
-  , minSockets : SocketType
-  , maxSockets : SocketType
+  , minSockets : Sockets
+  , maxSockets : Sockets
   }
 
 
@@ -24,9 +27,9 @@ initialModel : Model
 initialModel =
   { keywords = Nothing
   , runewords = runewords
-  , searchType = All
-  , minSockets = AnySockets
-  , maxSockets = AnySockets
+  , searchType = SearchType.All
+  , minSockets = Sockets.AnySockets
+  , maxSockets = Sockets.AnySockets
   }
 
 
@@ -38,8 +41,8 @@ init =
 type Action
   = KeywordSearch String
   | ChangeSearchType SearchType
-  | ChangeMinSockets SocketType
-  | ChangeMaxSockets SocketType
+  | ChangeMinSockets Sockets
+  | ChangeMaxSockets Sockets
 
 
 renderProperties : List String -> Html
@@ -52,26 +55,13 @@ renderProperties properties =
     ]
 
 
-showPatch : Patch -> String
-showPatch patch =
-  case patch of
-    OneEleven ->
-      "1.11"
-
-    OneTen ->
-      "1.10"
-
-    OneNine ->
-      "1.09"
-
-
 renderAttributes : Runeword -> Html
 renderAttributes runeword =
   div
     [ class "content" ]
     [ h6 [] [ text ("Sockets: " ++ (toString runeword.sockets)) ]
     , h6 [] [ text ("Ladder Only: " ++ (toString runeword.ladderOnly)) ]
-    , h6 [] [ text ("Patch: " ++ (showPatch runeword.patch)) ]
+    , h6 [] [ text ("Patch: " ++ (Patch.toString runeword.patch)) ]
     , h6 [] [ text ("Required Clvl: " ++ (toString runeword.clvl)) ]
     ]
 
@@ -132,13 +122,13 @@ applySearchFilter model =
 
           searchFn =
             case searchType of
-              Name ->
+              SearchType.Name ->
                 name
 
-              Runes ->
+              SearchType.Runes ->
                 runes
 
-              Properties ->
+              SearchType.Properties ->
                 properties
 
               _ ->
@@ -157,7 +147,7 @@ applySocketFilter model =
       model
 
     filtered =
-      List.filter (\rw -> socketBounds minSockets maxSockets rw.sockets) runewords
+      List.filter (\rw -> Sockets.socketBounds minSockets maxSockets rw.sockets) runewords
   in
     { model | runewords = filtered }
 
@@ -185,41 +175,13 @@ renderRunewordsList model =
       ]
 
 
-type SearchType
-  = All
-  | Name
-  | Runes
-  | Properties
-
-
-stFromString : String -> SearchType
-stFromString value =
-  case value of
-    "All" ->
-      All
-
-    "Name" ->
-      Name
-
-    "Runes" ->
-      Runes
-
-    "Properties" ->
-      Properties
-
-    _ ->
-      All
-
-
 renderSearchBar : Signal.Address Action -> Html
 renderSearchBar address =
   div
-    [ class "control is-horizontal has-addons" ]
-    [ div
-        [ class "control-label" ]
-        [ label [ class "label" ] [ text "Search" ] ]
+    [ class "control" ]
+    [ label [ class "label" ] [ text "Search" ]
     , div
-        [ class "control" ]
+        [ class "control has-addons" ]
         [ input
             [ class "input is-primary"
             , type' "text"
@@ -229,105 +191,42 @@ renderSearchBar address =
         , span
             [ class "select" ]
             [ select
-                [ Events.on "change" Events.targetValue (\v -> Signal.message address (ChangeSearchType (stFromString v))) ]
-                (List.map (\t -> option [] [ text (toString t) ]) [ All, Name, Runes, Properties ])
+                [ Events.on "change" Events.targetValue (\v -> Signal.message address (ChangeSearchType (SearchType.fromString v))) ]
+                (List.map (\t -> option [] [ text t ]) SearchType.displayList)
             ]
         ]
     ]
 
 
-type SocketType
-  = AnySockets
-  | Sockets Int
-
-
-minBounds : SocketType -> Int -> Bool
-minBounds min sockets =
-  case min of
-    AnySockets ->
-      True
-
-    Sockets i ->
-      sockets >= i
-
-
-maxBounds : SocketType -> Int -> Bool
-maxBounds max sockets =
-  case max of
-    AnySockets ->
-      True
-
-    Sockets i ->
-      sockets <= i
-
-
-socketBounds : SocketType -> SocketType -> Int -> Bool
-socketBounds min max sockets =
-  minBounds min sockets && maxBounds max sockets
-
-
-compareSocketType : String -> String -> Order
-compareSocketType a b =
-  if a == "Any" then
-    LT
-  else if b == "Any" then
-    GT
-  else
-    compare a b
-
-
-socketTypes : Dict String SocketType
-socketTypes =
-  Dict.fromList
-    [ ( "Any", AnySockets )
-    , ( "2", Sockets 2 )
-    , ( "3", Sockets 3 )
-    , ( "4", Sockets 4 )
-    , ( "5", Sockets 5 )
-    , ( "6", Sockets 6 )
-    ]
-
-
-getSocketType : String -> SocketType
-getSocketType key =
-  case (Dict.get key socketTypes) of
-    Just socketType ->
-      socketType
-
-    _ ->
-      AnySockets
-
-
-renderSocketFilter : Signal.Address Action -> String -> (SocketType -> Action) -> Html
-renderSocketFilter address name action =
-  div
-    [ class "control is-horizontal" ]
-    [ div
-        [ class "control-label" ]
-        [ label [ class "label" ] [ text name ] ]
-    , div
-        [ class "control" ]
-        [ span
-            [ class "select" ]
-            [ select
-                [ class "input is-secondary"
-                , Events.on "change" Events.targetValue (\v -> Signal.message address (action (getSocketType v)))
-                ]
-                (List.map
-                  (\s -> option [] [ text s ])
-                  (List.sortWith compareSocketType (Dict.keys socketTypes))
-                )
-            ]
+renderSocketFilter : Signal.Address Action -> (Sockets -> Action) -> Html
+renderSocketFilter address action =
+  span
+    [ class "select" ]
+    [ select
+        [ class "input is-secondary"
+        , Events.on "change" Events.targetValue (\v -> Signal.message address (action (Sockets.fromString v)))
         ]
+        (List.map
+          (\s -> option [] [ text s ])
+          (Sockets.displayList)
+        )
     ]
 
 
 renderSocketFilters : Signal.Address Action -> Html
 renderSocketFilters address =
   div
-    []
-    [ renderSocketFilter address "Min Sockets:" ChangeMinSockets
-    , renderSocketFilter address "Max Sockets:" ChangeMaxSockets
+    [ class "control" ]
+    [ label
+        [ class "label" ]
+        [ text "Sockets" ]
+    , div
+        [ class "control is-horizontal" ]
+        [ div [ class "control-label" ] [ label [ class "label" ] [ text "Min" ] ]
+        , div [ class "control" ] [ renderSocketFilter address ChangeMinSockets ]
+        , div [ class "control-label" ] [ label [ class "label" ] [ text "Max" ] ]
+        , div [ class "control" ] [ renderSocketFilter address ChangeMaxSockets ]
+        ]
     ]
 
 
