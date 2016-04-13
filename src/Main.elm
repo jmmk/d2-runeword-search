@@ -305,25 +305,18 @@ view address model =
 
 update : Action -> Model -> ( Model, Effects Action )
 update action model =
-  let
-    _ =
-      Debug.log "action" action
+  case action of
+    KeywordSearch query ->
+      ( { model | keywords = parseSearchKeywords query }, Effects.none )
 
-    _ =
-      Debug.log "model" model
-  in
-    case action of
-      KeywordSearch query ->
-        ( { model | keywords = parseSearchKeywords query }, Effects.none )
+    ChangeSearchType searchType ->
+      ( { model | searchType = searchType }, Effects.none )
 
-      ChangeSearchType searchType ->
-        ( { model | searchType = searchType }, Effects.none )
+    ChangeMinSockets socketType ->
+      ( { model | minSockets = socketType }, Effects.none )
 
-      ChangeMinSockets socketType ->
-        ( { model | minSockets = socketType }, Effects.none )
-
-      ChangeMaxSockets socketType ->
-        ( { model | maxSockets = socketType }, Effects.none )
+    ChangeMaxSockets socketType ->
+      ( { model | maxSockets = socketType }, Effects.none )
 
 
 app : StartApp.App Model
