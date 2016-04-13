@@ -11814,6 +11814,43 @@ Elm.StartApp.make = function (_elm) {
                                  ,Config: Config
                                  ,App: App};
 };
+Elm.Patch = Elm.Patch || {};
+Elm.Patch.make = function (_elm) {
+   "use strict";
+   _elm.Patch = _elm.Patch || {};
+   if (_elm.Patch.values) return _elm.Patch.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var toString = function (patch) {
+      var _p0 = patch;
+      switch (_p0.ctor)
+      {case "OneNine": return "1.09";
+         case "OneTen": return "1.10";
+         default: return "1.11";}
+   };
+   var OneEleven = {ctor: "OneEleven"};
+   var OneTen = {ctor: "OneTen"};
+   var OneNine = {ctor: "OneNine"};
+   var fromString = function (string) {
+      var _p1 = string;
+      switch (_p1)
+      {case "1.10": return OneTen;
+         case "1.11": return OneEleven;
+         default: return OneNine;}
+   };
+   return _elm.Patch.values = {_op: _op
+                              ,OneNine: OneNine
+                              ,OneTen: OneTen
+                              ,OneEleven: OneEleven
+                              ,toString: toString
+                              ,fromString: fromString};
+};
 Elm.Runewords = Elm.Runewords || {};
 Elm.Runewords.make = function (_elm) {
    "use strict";
@@ -11824,6 +11861,7 @@ Elm.Runewords.make = function (_elm) {
    $Debug = Elm.Debug.make(_elm),
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
+   $Patch = Elm.Patch.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
    var _op = {};
@@ -11846,9 +11884,6 @@ Elm.Runewords.make = function (_elm) {
    var Hammer = {ctor: "Hammer"};
    var Axe = {ctor: "Axe"};
    var Club = {ctor: "Club"};
-   var OneEleven = {ctor: "OneEleven"};
-   var OneTen = {ctor: "OneTen"};
-   var OneNine = {ctor: "OneNine"};
    var Helm = {ctor: "Helm"};
    var Shield = {ctor: "Shield"};
    var Weapon = {ctor: "Weapon"};
@@ -11896,7 +11931,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Poison Resist +48%"
                                                  ,"10% Damage Taken Goes to Mana"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 21}
                            ,{name: "Beast"
                             ,runes: _U.list([Ber,Tir,Um,Mal,Lum])
@@ -11914,7 +11949,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 To Mana After Each Kill"
                                                  ,"Level 13 Summon Grizzly (5 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 63}
                            ,{name: "Black"
                             ,runes: _U.list([Thul,Io,Nef])
@@ -11929,7 +11964,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Magic Damage Reduced By 2"
                                                  ,"Level 4 Corpse Explosion (12 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 35}
                            ,{name: "Bone"
                             ,runes: _U.list([Sol,Um,Um])
@@ -11941,7 +11976,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"All Resistances +30"
                                                  ,"Damage Reduced By 7"])
                             ,ladderOnly: false
-                            ,patch: OneEleven
+                            ,patch: $Patch.OneEleven
                             ,clvl: 47}
                            ,{name: "Bramble"
                             ,runes: _U.list([Ral,Ohm,Sur,Eth])
@@ -11958,7 +11993,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+13 Life After Each Kill"
                                                  ,"Level 13 Spirit of Barbs (33 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 61}
                            ,{name: "Brand"
                             ,runes: _U.list([Jah,Lo,Mal,Gul])
@@ -11974,7 +12009,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Prevent Monster Heal"
                                                  ,"Knockback"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Breath of the Dying"
                             ,runes: _U.list([Vex,Hel,El,Eld,Zod,Eth])
@@ -11994,7 +12029,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+1 To Light Radius"
                                                  ,"Requirements -20%"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 69}
                            ,{name: "Call to Arms"
                             ,runes: _U.list([Amn,Ral,Mal,Ist,Ohm])
@@ -12011,7 +12046,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Replenish Life +12"
                                                  ,"30% Better Chance of Getting Magic Items"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 57}
                            ,{name: "Chains of Honor"
                             ,runes: _U.list([Dol,Um,Ber,Ist])
@@ -12027,7 +12062,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Damage Reduced By 8%"
                                                  ,"25% Better Chance of Getting Magic Items"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 63}
                            ,{name: "Chaos"
                             ,runes: _U.list([Fal,Ohm,Um])
@@ -12042,7 +12077,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+10 To Strength"
                                                  ,"+15 Life After Each Demon Kill"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 57}
                            ,{name: "Crescent Moon"
                             ,runes: _U.list([Shael,Um,Tir])
@@ -12058,7 +12093,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 To Mana After Each Kill"
                                                  ,"Level 18 Summon Spirit Wolf (30 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 47}
                            ,{name: "Death"
                             ,runes: _U.list([Hel,El,Vex,Ort,Gul])
@@ -12077,7 +12112,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Level 22 Blood Golem (15 Charges)"
                                                  ,"Requirements -20%"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 55}
                            ,{name: "Delirium"
                             ,runes: _U.list([Lem,Ist,Io])
@@ -12093,7 +12128,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"25% Better Chance of Getting Magic Items"
                                                  ,"Level 17 Attract (60 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 51}
                            ,{name: "Destruction"
                             ,runes: _U.list([Vex,Lo,Ber,Jah,Ko])
@@ -12111,7 +12146,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Prevent Monster Heal"
                                                  ,"+10 To Dexterity"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Enigma"
                             ,runes: _U.list([Jah,Ith,Ber])
@@ -12127,7 +12162,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"15% Damage Taken Goes To Mana"
                                                  ,"(1*Clvl)% Better Chance of Getting Magic Items (Based On Character Level)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Doom"
                             ,runes: _U.list([Hel,Ohm,Um,Lo,Cham])
@@ -12144,7 +12179,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Freezes Target +3"
                                                  ,"Requirements -20%"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 67}
                            ,{name: "Dragon"
                             ,runes: _U.list([Sur,Lo,Sol])
@@ -12164,7 +12199,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Shields"
                                                  ,"+50 To Mana"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 61}
                            ,{name: "Dream"
                             ,runes: _U.list([Io,Jah,Pul])
@@ -12184,7 +12219,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Shields"
                                                  ,"+50 To Life"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Duress"
                             ,runes: _U.list([Shael,Um,Thul])
@@ -12201,7 +12236,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Fire Resist +15%"
                                                  ,"Poison Resist +15%"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 47}
                            ,{name: "Edge"
                             ,runes: _U.list([Tir,Tal,Amn])
@@ -12217,7 +12252,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 To Mana After Each Kill"
                                                  ,"Reduces All Vendor Prices 15%"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 25}
                            ,{name: "Enlightenment"
                             ,runes: _U.list([Pul,Ral,Sol])
@@ -12230,7 +12265,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Fire Resist +30%"
                                                  ,"Damage Reduced By 7"])
                             ,ladderOnly: false
-                            ,patch: OneEleven
+                            ,patch: $Patch.OneEleven
                             ,clvl: 45}
                            ,{name: "Eternity"
                             ,runes: _U.list([Amn,Ber,Ist,Sol,Sur])
@@ -12247,7 +12282,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"30% Better Chance Of Getting Magic Items"
                                                  ,"Level 8 Revive (88 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 63}
                            ,{name: "Exile"
                             ,runes: _U.list([Vex,Ohm,Ist,Dol])
@@ -12264,7 +12299,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"25% Better Chance Of Getting Magic Items"
                                                  ,"Repairs 1 Durability every 4 seconds"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 57}
                            ,{name: "Faith"
                             ,runes: _U.list([Ohm,Jah,Lem,Eld])
@@ -12281,7 +12316,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"10% Reanimate As: Returned"
                                                  ,"75% Extra Gold From Monsters"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Famine"
                             ,runes: _U.list([Fal,Ohm,Ort,Jah])
@@ -12297,7 +12332,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Prevent Monster Heal"
                                                  ,"+10 To Strength"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Fortitude"
                             ,runes: _U.list([El,Sol,Dol,Lo])
@@ -12322,7 +12357,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+5% To Maximum Lightning Resist"
                                                  ,"Damage Reduced By 7"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 59}
                            ,{name: "Fury"
                             ,runes: _U.list([Jah,Gul,Eth])
@@ -12338,7 +12373,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+5 To Frenzy (Barbarian Only)"
                                                  ,"Prevent Monster Heal"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 65}
                            ,{name: "Gloom"
                             ,runes: _U.list([Fal,Um,Pul])
@@ -12352,7 +12387,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"5% Damage Taken Goes To Mana"
                                                  ,"-3 To Light Radius"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 47}
                            ,{name: "Grief"
                             ,runes: _U.list([Eth,Tir,Lo,Mal,Ral])
@@ -12370,7 +12405,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 To Mana After Each Kill"
                                                  ,"+10-15 Life After Each Kill (varies)"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 59}
                            ,{name: "Hand of Justice"
                             ,runes: _U.list([Sur,Cham,Amn,Lo])
@@ -12387,7 +12422,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Hit Blinds Target"
                                                  ,"Freezes Target +3"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 67}
                            ,{name: "Harmony"
                             ,runes: _U.list([Tir,Ith,Sol,Ko])
@@ -12406,7 +12441,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 To Light Radius"
                                                  ,"Level 20 Revive (25 Charges)"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 39}
                            ,{name: "Heart of the Oak"
                             ,runes: _U.list([Ko,Vex,Pul,Thul])
@@ -12424,7 +12459,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Level 4 Oak Sage (25 Charges)"
                                                  ,"Level 14 Raven (60 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 55}
                            ,{name: "Holy Thunder"
                             ,runes: _U.list([Eth,Ral,Ort,Tal])
@@ -12440,7 +12475,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Lightning Resist +60%"
                                                  ,"Level 7 Chain Lightning (60 charges)"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 23}
                            ,{name: "Honor"
                             ,runes: _U.list([Amn,El,Ith,Tir,Sol])
@@ -12457,7 +12492,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 to Mana after each Kill"
                                                  ,"+1 to Light Radius"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 27}
                            ,{name: "Ice"
                             ,runes: _U.list([Amn,Shael,Jah,Lo])
@@ -12474,7 +12509,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"20% Deadly Strike"
                                                  ,"(3.125*Clvl)% Extra Gold From Monsters (Based on Character Level)"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Infinity"
                             ,runes: _U.list([Ber,Mal,Ber,Ist])
@@ -12490,7 +12525,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"30% Better Chance of Getting Magic Items"
                                                  ,"Level 21 Cyclone Armor (30 Charges)"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 63}
                            ,{name: "Insight"
                             ,runes: _U.list([Ral,Tir,Tal,Sol])
@@ -12507,7 +12542,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 To Mana After Each Kill"
                                                  ,"23% Better Chance of Getting Magic Items"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 27}
                            ,{name: "King\'s Grace"
                             ,runes: _U.list([Amn,Ral,Thul])
@@ -12522,7 +12557,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Adds 3-14 Cold damage"
                                                  ,"7% Life stolen per hit"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 25}
                            ,{name: "Kingslayer"
                             ,runes: _U.list([Mal,Um,Gul,Fal])
@@ -12538,7 +12573,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+10 To Strength"
                                                  ,"40% Extra Gold From Monsters"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 53}
                            ,{name: "Last Wish"
                             ,runes: _U.list([Jah,Mal,Jah,Sur,Jah,Ber])
@@ -12554,7 +12589,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Hit Blinds Target"
                                                  ,"(0.5*Clvl)% Chance of Getting Magic Items (Based on Character Level)"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Lawbringer"
                             ,runes: _U.list([Amn,Lem,Ko])
@@ -12570,7 +12605,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+10 To Dexterity"
                                                  ,"75% Extra Gold From Monsters"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 43}
                            ,{name: "Leaf"
                             ,runes: _U.list([Tir,Ral])
@@ -12584,7 +12619,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Cold Resist +33%"
                                                  ,"+2 to Mana after each Kill"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 19}
                            ,{name: "Lionheart"
                             ,runes: _U.list([Hel,Lum,Fal])
@@ -12598,7 +12633,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"All Resistances +30"
                                                  ,"Requirements -15%"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 41}
                            ,{name: "Lore"
                             ,runes: _U.list([Ort,Sol])
@@ -12610,7 +12645,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 to Mana after each Kill"
                                                  ,"+2 to Light Radius"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 27}
                            ,{name: "Malice"
                             ,runes: _U.list([Ith,El,Eth])
@@ -12624,7 +12659,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"-100 to Monster Defense Per Hit"
                                                  ,"Drain Life -5"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 15}
                            ,{name: "Melody"
                             ,runes: _U.list([Shael,Ko,Nef])
@@ -12639,7 +12674,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Knockback"
                                                  ,"+10 To Dexterity"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 39}
                            ,{name: "Memory"
                             ,runes: _U.list([Lum,Io,Sol,Eth])
@@ -12656,7 +12691,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Increase Maximum Mana 20%"
                                                  ,"Magic Damage Reduced By 7"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 37}
                            ,{name: "Myth"
                             ,runes: _U.list([Hel,Amn,Nef])
@@ -12669,7 +12704,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Attacker Takes Damage of 14"
                                                  ,"Requirements -15%"])
                             ,ladderOnly: false
-                            ,patch: OneEleven
+                            ,patch: $Patch.OneEleven
                             ,clvl: 25}
                            ,{name: "Stealth"
                             ,runes: _U.list([Tal,Eth])
@@ -12683,7 +12718,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Poison Resist +30%"
                                                  ,"Magic Damage Reduced by 3"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 17}
                            ,{name: "Nadir"
                             ,runes: _U.list([Nef,Tir])
@@ -12697,7 +12732,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"-3 to Light Radius"
                                                  ,"Level 13 Cloak of Shadows (9 charges)"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 13}
                            ,{name: "Oath"
                             ,runes: _U.list([Shael,Pul,Mal,Lum])
@@ -12714,7 +12749,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Level 16 Heart of Wolverine (20 Charges)"
                                                  ,"Level 17 Iron Golem (14 Charges)"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 59}
                            ,{name: "Obedience"
                             ,runes: _U.list([Hel,Ko,Thul,Eth,Fal])
@@ -12732,7 +12767,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"All Resistances +20-30 (varies)"
                                                  ,"Requirements -20%"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 41}
                            ,{name: "Passion"
                             ,runes: _U.list([Dol,Ort,Eld,Lem])
@@ -12750,7 +12785,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"75% Extra Gold From Monsters"
                                                  ,"Level 3 Heart of Wolverine (12 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 43}
                            ,{name: "Peace"
                             ,runes: _U.list([Shael,Thul,Amn])
@@ -12763,7 +12798,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Cold Resist +30%"
                                                  ,"Attacker Takes Damage of 14"])
                             ,ladderOnly: false
-                            ,patch: OneEleven
+                            ,patch: $Patch.OneEleven
                             ,clvl: 29}
                            ,{name: "Phoenix"
                             ,runes: _U.list([Vex,Vex,Lo,Jah])
@@ -12785,7 +12820,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+5% To Maximum Lightning Resist"
                                                  ,"+10% To Maximum Fire Resist"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 65}
                            ,{name: "Pride"
                             ,runes: _U.list([Cham,Sur,Io,Lo])
@@ -12802,7 +12837,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Replenish Life +8"
                                                  ,"(1.875*Clvl)% Extra Gold From Monsters (Based on Character Level)"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 67}
                            ,{name: "Principle"
                             ,runes: _U.list([Ral,Gul,Eld])
@@ -12815,7 +12850,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+5% To Maximum Poison Resist"
                                                  ,"Fire Resist +30%"])
                             ,ladderOnly: false
-                            ,patch: OneEleven
+                            ,patch: $Patch.OneEleven
                             ,clvl: 55}
                            ,{name: "Prudence"
                             ,runes: _U.list([Mal,Tir])
@@ -12829,7 +12864,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+1 To Light Radius"
                                                  ,"Repairs Durability 1 In 4 Seconds"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 49}
                            ,{name: "Radiance"
                             ,runes: _U.list([Nef,Sol,Ith])
@@ -12844,7 +12879,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"15% Damage Taken Goes to Mana"
                                                  ,"+5 to Light Radius"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 27}
                            ,{name: "Rain"
                             ,runes: _U.list([Ort,Mal,Ith])
@@ -12857,7 +12892,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Magic Damage Reduced By 7"
                                                  ,"15% Damage Taken Goes to Mana"])
                             ,ladderOnly: false
-                            ,patch: OneEleven
+                            ,patch: $Patch.OneEleven
                             ,clvl: 49}
                            ,{name: "Rhyme"
                             ,runes: _U.list([Shael,Eth])
@@ -12870,7 +12905,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"50% Extra Gold from Monsters"
                                                  ,"25% Better Chance of Getting Magic Items"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 29}
                            ,{name: "Rift"
                             ,runes: _U.list([Hel,Ko,Lem,Gul])
@@ -12887,7 +12922,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Level 15 Iron Maiden (40 Charges)"
                                                  ,"Requirements -20%"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 53}
                            ,{name: "Sanctuary"
                             ,runes: _U.list([Ko,Ko,Mal])
@@ -12902,7 +12937,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Magic Damage Reduced By 7"
                                                  ,"Level 12 Slow Missiles (60 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 49}
                            ,{name: "Silence"
                             ,runes: _U.list([Dol,Eld,Hel,Ist,Tir,Vex])
@@ -12921,7 +12956,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"30% Better Chance of Getting Magic Items"
                                                  ,"Requirements -20%"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 55}
                            ,{name: "Smoke"
                             ,runes: _U.list([Nef,Lum])
@@ -12934,7 +12969,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"-1 to Light Radius"
                                                  ,"Level 6 Weaken (18 charges)"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 37}
                            ,{name: "Spirit"
                             ,runes: _U.list([Tal,Thul,Ort,Amn])
@@ -12958,7 +12993,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+75 Poison Damage Over 5 Seconds"
                                                  ,"7% Life Stolen Per Hit"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 25}
                            ,{name: "Splendor"
                             ,runes: _U.list([Eth,Lum])
@@ -12973,7 +13008,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"20% Better Chance of Getting Magic Items"
                                                  ,"+3 To Light Radius"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 37}
                            ,{name: "Steel"
                             ,runes: _U.list([Tir,El])
@@ -12987,7 +13022,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+2 to Mana after each Kill"
                                                  ,"+1 to Light Radius"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 13}
                            ,{name: "Stone"
                             ,runes: _U.list([])
@@ -13002,7 +13037,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Level 16 Molten Boulder (80 Charges)"
                                                  ,"Level 16 Clay Golem (16 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 47}
                            ,{name: "Strength"
                             ,runes: _U.list([Amn,Tir])
@@ -13014,7 +13049,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+10 to Vitality"
                                                  ,"+2 to Mana after each Kill"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 25}
                            ,{name: "Treachery"
                             ,runes: _U.list([Shael,Thul,Lem])
@@ -13027,7 +13062,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Cold Resist +30%"
                                                  ,"50% Extra Gold From Monsters"])
                             ,ladderOnly: false
-                            ,patch: OneEleven
+                            ,patch: $Patch.OneEleven
                             ,clvl: 43}
                            ,{name: "Venom"
                             ,runes: _U.list([Tal,Dol,Mal])
@@ -13040,7 +13075,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Level 13 Poison Nova (11 Charges)"
                                                  ,"Level 15 Poison Explosion (27 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 49}
                            ,{name: "Voice of Reason"
                             ,runes: _U.list([Lem,Ko,El,Eld])
@@ -13058,7 +13093,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"75% Extra Gold From Monsters"
                                                  ,"+1 To Light Radius"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 43}
                            ,{name: "Wealth"
                             ,runes: _U.list([Lem,Ko,Tir])
@@ -13068,7 +13103,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"300% Extra Gold From Monsters"
                                                  ,"100% Better Chance of Getting Magic Items"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 43}
                            ,{name: "White"
                             ,runes: _U.list([Dol,Io])
@@ -13083,7 +13118,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+13 to mana"
                                                  ,"Magic Damage Reduced by 4"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 35}
                            ,{name: "Wind"
                             ,runes: _U.list([Sur,El])
@@ -13099,7 +13134,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+1 To Light Radius"
                                                  ,"Level 13 Twister (127 Charges)"])
                             ,ladderOnly: false
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 61}
                            ,{name: "Wrath"
                             ,runes: _U.list([Pul,Lum,Ber,Mal])
@@ -13116,7 +13151,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"+10 To Energy"
                                                  ,"Cannot Be Frozen"])
                             ,ladderOnly: true
-                            ,patch: OneTen
+                            ,patch: $Patch.OneTen
                             ,clvl: 63}
                            ,{name: "Zephyr"
                             ,runes: _U.list([Ort,Eth])
@@ -13130,7 +13165,7 @@ Elm.Runewords.make = function (_elm) {
                                                  ,"Adds 1-50 lightning damage"
                                                  ,"+25 Defense"])
                             ,ladderOnly: false
-                            ,patch: OneNine
+                            ,patch: $Patch.OneNine
                             ,clvl: 21}]);
    return _elm.Runewords.values = {_op: _op
                                   ,El: El
@@ -13170,9 +13205,6 @@ Elm.Runewords.make = function (_elm) {
                                   ,Weapon: Weapon
                                   ,Shield: Shield
                                   ,Helm: Helm
-                                  ,OneNine: OneNine
-                                  ,OneTen: OneTen
-                                  ,OneEleven: OneEleven
                                   ,Club: Club
                                   ,Axe: Axe
                                   ,Hammer: Hammer
@@ -13185,6 +13217,121 @@ Elm.Runewords.make = function (_elm) {
                                   ,Wand: Wand
                                   ,Runeword: Runeword
                                   ,runewords: runewords};
+};
+Elm.Sockets = Elm.Sockets || {};
+Elm.Sockets.make = function (_elm) {
+   "use strict";
+   _elm.Sockets = _elm.Sockets || {};
+   if (_elm.Sockets.values) return _elm.Sockets.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Dict = Elm.Dict.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var maxBounds = F2(function (max,sockets) {
+      var _p0 = max;
+      if (_p0.ctor === "AnySockets") {
+            return true;
+         } else {
+            return _U.cmp(sockets,_p0._0) < 1;
+         }
+   });
+   var minBounds = F2(function (min,sockets) {
+      var _p1 = min;
+      if (_p1.ctor === "AnySockets") {
+            return true;
+         } else {
+            return _U.cmp(sockets,_p1._0) > -1;
+         }
+   });
+   var socketBounds = F3(function (min,max,sockets) {
+      return A2(minBounds,min,sockets) && A2(maxBounds,
+      max,
+      sockets);
+   });
+   var compareSockets = F2(function (a,b) {
+      return _U.eq(a,"Any") ? $Basics.LT : _U.eq(b,
+      "Any") ? $Basics.GT : A2($Basics.compare,a,b);
+   });
+   var Sockets = function (a) {
+      return {ctor: "Sockets",_0: a};
+   };
+   var AnySockets = {ctor: "AnySockets"};
+   var sockets = $Dict.fromList(_U.list([{ctor: "_Tuple2"
+                                         ,_0: "Any"
+                                         ,_1: AnySockets}
+                                        ,{ctor: "_Tuple2",_0: "2",_1: Sockets(2)}
+                                        ,{ctor: "_Tuple2",_0: "3",_1: Sockets(3)}
+                                        ,{ctor: "_Tuple2",_0: "4",_1: Sockets(4)}
+                                        ,{ctor: "_Tuple2",_0: "5",_1: Sockets(5)}
+                                        ,{ctor: "_Tuple2",_0: "6",_1: Sockets(6)}]));
+   var displayList = A2($List.sortWith,
+   compareSockets,
+   $Dict.keys(sockets));
+   var fromString = function (key) {
+      var _p2 = A2($Dict.get,key,sockets);
+      if (_p2.ctor === "Just") {
+            return _p2._0;
+         } else {
+            return AnySockets;
+         }
+   };
+   return _elm.Sockets.values = {_op: _op
+                                ,AnySockets: AnySockets
+                                ,Sockets: Sockets
+                                ,sockets: sockets
+                                ,compareSockets: compareSockets
+                                ,displayList: displayList
+                                ,minBounds: minBounds
+                                ,maxBounds: maxBounds
+                                ,socketBounds: socketBounds
+                                ,fromString: fromString};
+};
+Elm.SearchType = Elm.SearchType || {};
+Elm.SearchType.make = function (_elm) {
+   "use strict";
+   _elm.SearchType = _elm.SearchType || {};
+   if (_elm.SearchType.values) return _elm.SearchType.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Dict = Elm.Dict.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var Properties = {ctor: "Properties"};
+   var Runes = {ctor: "Runes"};
+   var Name = {ctor: "Name"};
+   var All = {ctor: "All"};
+   var searchTypes = $Dict.fromList(_U.list([{ctor: "_Tuple2"
+                                             ,_0: "All"
+                                             ,_1: All}
+                                            ,{ctor: "_Tuple2",_0: "Name",_1: Name}
+                                            ,{ctor: "_Tuple2",_0: "Runes",_1: Runes}
+                                            ,{ctor: "_Tuple2",_0: "Properties",_1: Properties}]));
+   var displayList = $List.sort($Dict.keys(searchTypes));
+   var fromString = function (key) {
+      var _p0 = A2($Dict.get,key,searchTypes);
+      if (_p0.ctor === "Just") {
+            return _p0._0;
+         } else {
+            return All;
+         }
+   };
+   return _elm.SearchType.values = {_op: _op
+                                   ,All: All
+                                   ,Name: Name
+                                   ,Runes: Runes
+                                   ,Properties: Properties
+                                   ,searchTypes: searchTypes
+                                   ,displayList: displayList
+                                   ,fromString: fromString};
 };
 Elm.Main = Elm.Main || {};
 Elm.Main.make = function (_elm) {
@@ -13200,9 +13347,12 @@ Elm.Main.make = function (_elm) {
    $Html$Events = Elm.Html.Events.make(_elm),
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
+   $Patch = Elm.Patch.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Runewords = Elm.Runewords.make(_elm),
+   $SearchType = Elm.SearchType.make(_elm),
    $Signal = Elm.Signal.make(_elm),
+   $Sockets = Elm.Sockets.make(_elm),
    $StartApp = Elm.StartApp.make(_elm),
    $String = Elm.String.make(_elm),
    $Task = Elm.Task.make(_elm);
@@ -13246,111 +13396,36 @@ Elm.Main.make = function (_elm) {
                          ,_0: _U.update(model,{maxSockets: _p2._0})
                          ,_1: $Effects.none};}
    });
-   var compareSocketType = F3(function (sockets,socketType,ord) {
-      var _p3 = ord;
-      if (_p3.ctor === "GT") {
-            var _p4 = socketType;
-            switch (_p4.ctor)
-            {case "AnySockets": return true;
-               case "Two": return _U.cmp(sockets,2) > -1;
-               case "Three": return _U.cmp(sockets,3) > -1;
-               case "Four": return _U.cmp(sockets,4) > -1;
-               case "Five": return _U.cmp(sockets,5) > -1;
-               default: return _U.cmp(sockets,6) > -1;}
-         } else {
-            var _p5 = socketType;
-            switch (_p5.ctor)
-            {case "AnySockets": return true;
-               case "Two": return _U.cmp(sockets,2) < 1;
-               case "Three": return _U.cmp(sockets,3) < 1;
-               case "Four": return _U.cmp(sockets,4) < 1;
-               case "Five": return _U.cmp(sockets,5) < 1;
-               default: return _U.cmp(sockets,6) < 1;}
-         }
+   var renderSocketFilter = F2(function (address,action) {
+      return A2($Html.span,
+      _U.list([$Html$Attributes.$class("select")]),
+      _U.list([A2($Html.select,
+      _U.list([$Html$Attributes.$class("input is-secondary")
+              ,A3($Html$Events.on,
+              "change",
+              $Html$Events.targetValue,
+              function (v) {
+                 return A2($Signal.message,
+                 address,
+                 action($Sockets.fromString(v)));
+              })]),
+      A2($List.map,
+      function (s) {
+         return A2($Html.option,_U.list([]),_U.list([$Html.text(s)]));
+      },
+      $Sockets.displayList))]));
    });
-   var socketTypeToString = function (socketType) {
-      var _p6 = socketType;
-      switch (_p6.ctor)
-      {case "AnySockets": return "Any";
-         case "Two": return "2";
-         case "Three": return "3";
-         case "Four": return "4";
-         case "Five": return "5";
-         default: return "6";}
-   };
-   var Six = {ctor: "Six"};
-   var Five = {ctor: "Five"};
-   var Four = {ctor: "Four"};
-   var Three = {ctor: "Three"};
-   var Two = {ctor: "Two"};
-   var AnySockets = {ctor: "AnySockets"};
-   var stringToSocketType = function (string) {
-      var _p7 = string;
-      switch (_p7)
-      {case "2": return Two;
-         case "3": return Three;
-         case "4": return Four;
-         case "5": return Five;
-         case "6": return Six;
-         default: return AnySockets;}
-   };
-   var renderSocketFilter = F3(function (address,name,action) {
-      return A2($Html.div,
-      _U.list([$Html$Attributes.$class("control is-horizontal")]),
-      _U.list([A2($Html.div,
-              _U.list([$Html$Attributes.$class("control-label")]),
-              _U.list([A2($Html.label,
-              _U.list([$Html$Attributes.$class("label")]),
-              _U.list([$Html.text(name)]))]))
-              ,A2($Html.div,
-              _U.list([$Html$Attributes.$class("control")]),
-              _U.list([A2($Html.span,
-              _U.list([$Html$Attributes.$class("select")]),
-              _U.list([A2($Html.select,
-              _U.list([$Html$Attributes.$class("input is-secondary")
-                      ,A3($Html$Events.on,
-                      "change",
-                      $Html$Events.targetValue,
-                      function (v) {
-                         return A2($Signal.message,
-                         address,
-                         action(stringToSocketType(v)));
-                      })]),
-              A2($List.map,
-              function (s) {
-                 return A2($Html.option,
-                 _U.list([]),
-                 _U.list([$Html.text(socketTypeToString(s))]));
-              },
-              _U.list([AnySockets,Two,Three,Four,Five,Six])))]))]))]));
-   });
-   var Properties = {ctor: "Properties"};
-   var Runes = {ctor: "Runes"};
-   var Name = {ctor: "Name"};
-   var All = {ctor: "All"};
-   var stFromString = function (value) {
-      var _p8 = value;
-      switch (_p8)
-      {case "All": return All;
-         case "Name": return Name;
-         case "Runes": return Runes;
-         case "Properties": return Properties;
-         default: return All;}
-   };
    var applySocketFilter = function (model) {
-      var _p9 = model;
-      var runewords = _p9.runewords;
-      var minSockets = _p9.minSockets;
-      var maxSockets = _p9.maxSockets;
+      var _p3 = model;
+      var runewords = _p3.runewords;
+      var minSockets = _p3.minSockets;
+      var maxSockets = _p3.maxSockets;
       var filtered = A2($List.filter,
       function (rw) {
-         return A3(compareSocketType,
-         rw.sockets,
+         return A3($Sockets.socketBounds,
          minSockets,
-         $Basics.GT) && A3(compareSocketType,
-         rw.sockets,
          maxSockets,
-         $Basics.LT);
+         rw.sockets);
       },
       runewords);
       return _U.update(model,{runewords: filtered});
@@ -13361,12 +13436,12 @@ Elm.Main.make = function (_elm) {
       $String.toLower(searchText));
    });
    var applySearchFilter = function (model) {
-      var _p10 = model;
-      var keywords = _p10.keywords;
-      var runewords = _p10.runewords;
-      var searchType = _p10.searchType;
-      var _p11 = keywords;
-      if (_p11.ctor === "Nothing") {
+      var _p4 = model;
+      var keywords = _p4.keywords;
+      var runewords = _p4.runewords;
+      var searchType = _p4.searchType;
+      var _p5 = keywords;
+      if (_p5.ctor === "Nothing") {
             return model;
          } else {
             var properties = function (rw) {
@@ -13384,8 +13459,8 @@ Elm.Main.make = function (_elm) {
                _U.list([name(rw),runes(rw),properties(rw)]));
             };
             var searchFn = function () {
-               var _p12 = searchType;
-               switch (_p12.ctor)
+               var _p6 = searchType;
+               switch (_p6.ctor)
                {case "Name": return name;
                   case "Runes": return runes;
                   case "Properties": return properties;
@@ -13397,7 +13472,7 @@ Elm.Main.make = function (_elm) {
                function (kw) {
                   return A2(keywordMatch,kw,searchFn(rw));
                },
-               _p11._0);
+               _p5._0);
             },
             runewords);
             return _U.update(model,{runewords: filtered});
@@ -13405,13 +13480,6 @@ Elm.Main.make = function (_elm) {
    };
    var applyFilters = function (model) {
       return applySocketFilter(applySearchFilter(model));
-   };
-   var showPatch = function (patch) {
-      var _p13 = patch;
-      switch (_p13.ctor)
-      {case "OneEleven": return "1.11";
-         case "OneTen": return "1.10";
-         default: return "1.09";}
    };
    var renderAttributes = function (runeword) {
       return A2($Html.div,
@@ -13430,7 +13498,7 @@ Elm.Main.make = function (_elm) {
               _U.list([]),
               _U.list([$Html.text(A2($Basics._op["++"],
               "Patch: ",
-              showPatch(runeword.patch)))]))
+              $Patch.toString(runeword.patch)))]))
               ,A2($Html.h6,
               _U.list([]),
               _U.list([$Html.text(A2($Basics._op["++"],
@@ -13476,10 +13544,10 @@ Elm.Main.make = function (_elm) {
       var filtered = function (_) {
          return _.runewords;
       }(applyFilters(model));
-      var _p14 = model;
-      var runewords = _p14.runewords;
-      var keywords = _p14.keywords;
-      var searchType = _p14.searchType;
+      var _p7 = model;
+      var runewords = _p7.runewords;
+      var keywords = _p7.keywords;
+      var searchType = _p7.searchType;
       return A2($Html.div,
       _U.list([$Html$Attributes.$class("columns")]),
       _U.list([A2($Html.div,
@@ -13496,15 +13564,30 @@ Elm.Main.make = function (_elm) {
    };
    var renderSocketFilters = function (address) {
       return A2($Html.div,
-      _U.list([]),
-      _U.list([A3(renderSocketFilter,
-              address,
-              "Min Sockets:",
-              ChangeMinSockets)
-              ,A3(renderSocketFilter,
-              address,
-              "Max Sockets:",
-              ChangeMaxSockets)]));
+      _U.list([$Html$Attributes.$class("control")]),
+      _U.list([A2($Html.label,
+              _U.list([$Html$Attributes.$class("label")]),
+              _U.list([$Html.text("Sockets")]))
+              ,A2($Html.div,
+              _U.list([$Html$Attributes.$class("control is-horizontal")]),
+              _U.list([A2($Html.div,
+                      _U.list([$Html$Attributes.$class("control-label")]),
+                      _U.list([A2($Html.label,
+                      _U.list([$Html$Attributes.$class("label")]),
+                      _U.list([$Html.text("Min")]))]))
+                      ,A2($Html.div,
+                      _U.list([$Html$Attributes.$class("control")]),
+                      _U.list([A2(renderSocketFilter,address,ChangeMinSockets)]))
+                      ,A2($Html.div,
+                      _U.list([$Html$Attributes.$class("control-label")]),
+                      _U.list([A2($Html.label,
+                      _U.list([$Html$Attributes.$class("label")]),
+                      _U.list([$Html.text("Max")]))]))
+                      ,A2($Html.div,
+                      _U.list([$Html$Attributes.$class("control")]),
+                      _U.list([A2(renderSocketFilter,
+                      address,
+                      ChangeMaxSockets)]))]))]));
    };
    var ChangeSearchType = function (a) {
       return {ctor: "ChangeSearchType",_0: a};
@@ -13514,14 +13597,12 @@ Elm.Main.make = function (_elm) {
    };
    var renderSearchBar = function (address) {
       return A2($Html.div,
-      _U.list([$Html$Attributes.$class("control is-horizontal has-addons")]),
-      _U.list([A2($Html.div,
-              _U.list([$Html$Attributes.$class("control-label")]),
-              _U.list([A2($Html.label,
+      _U.list([$Html$Attributes.$class("control")]),
+      _U.list([A2($Html.label,
               _U.list([$Html$Attributes.$class("label")]),
-              _U.list([$Html.text("Search")]))]))
+              _U.list([$Html.text("Search")]))
               ,A2($Html.div,
-              _U.list([$Html$Attributes.$class("control")]),
+              _U.list([$Html$Attributes.$class("control has-addons")]),
               _U.list([A2($Html.input,
                       _U.list([$Html$Attributes.$class("input is-primary")
                               ,$Html$Attributes.type$("text")
@@ -13541,15 +13622,13 @@ Elm.Main.make = function (_elm) {
                       function (v) {
                          return A2($Signal.message,
                          address,
-                         ChangeSearchType(stFromString(v)));
+                         ChangeSearchType($SearchType.fromString(v)));
                       })]),
                       A2($List.map,
                       function (t) {
-                         return A2($Html.option,
-                         _U.list([]),
-                         _U.list([$Html.text($Basics.toString(t))]));
+                         return A2($Html.option,_U.list([]),_U.list([$Html.text(t)]));
                       },
-                      _U.list([All,Name,Runes,Properties])))]))]))]));
+                      $SearchType.displayList))]))]))]));
    };
    var renderFilters = function (address) {
       return A2($Html.form,
@@ -13578,9 +13657,9 @@ Elm.Main.make = function (_elm) {
    });
    var initialModel = {keywords: $Maybe.Nothing
                       ,runewords: $Runewords.runewords
-                      ,searchType: All
-                      ,minSockets: AnySockets
-                      ,maxSockets: AnySockets};
+                      ,searchType: $SearchType.All
+                      ,minSockets: $Sockets.AnySockets
+                      ,maxSockets: $Sockets.AnySockets};
    var init = {ctor: "_Tuple2",_0: initialModel,_1: $Effects.none};
    var app = $StartApp.start({init: init
                              ,update: update
@@ -13605,7 +13684,6 @@ Elm.Main.make = function (_elm) {
                              ,ChangeMinSockets: ChangeMinSockets
                              ,ChangeMaxSockets: ChangeMaxSockets
                              ,renderProperties: renderProperties
-                             ,showPatch: showPatch
                              ,renderAttributes: renderAttributes
                              ,renderRuneword: renderRuneword
                              ,keywordMatch: keywordMatch
@@ -13613,21 +13691,7 @@ Elm.Main.make = function (_elm) {
                              ,applySocketFilter: applySocketFilter
                              ,applyFilters: applyFilters
                              ,renderRunewordsList: renderRunewordsList
-                             ,All: All
-                             ,Name: Name
-                             ,Runes: Runes
-                             ,Properties: Properties
-                             ,stFromString: stFromString
                              ,renderSearchBar: renderSearchBar
-                             ,AnySockets: AnySockets
-                             ,Two: Two
-                             ,Three: Three
-                             ,Four: Four
-                             ,Five: Five
-                             ,Six: Six
-                             ,socketTypeToString: socketTypeToString
-                             ,stringToSocketType: stringToSocketType
-                             ,compareSocketType: compareSocketType
                              ,renderSocketFilter: renderSocketFilter
                              ,renderSocketFilters: renderSocketFilters
                              ,renderFilters: renderFilters
