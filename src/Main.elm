@@ -8,6 +8,7 @@ import Effects exposing (Effects, Never)
 import Task
 import String
 import Runewords exposing (Runeword, Patch(..), runewords)
+import Dict exposing (Dict)
 
 
 type alias Model =
@@ -41,7 +42,7 @@ type Action
   | ChangeMaxSockets SocketType
 
 
-renderProperties : List String -> Html.Html
+renderProperties : List String -> Html
 renderProperties properties =
   div
     [ class "content" ]
@@ -64,7 +65,7 @@ showPatch patch =
       "1.09"
 
 
-renderAttributes : Runeword -> Html.Html
+renderAttributes : Runeword -> Html
 renderAttributes runeword =
   div
     [ class "content" ]
@@ -75,7 +76,7 @@ renderAttributes runeword =
     ]
 
 
-renderRuneword : Runeword -> Html.Html
+renderRuneword : Runeword -> Html
 renderRuneword runeword =
   div
     [ class "box" ]
@@ -156,7 +157,7 @@ applySocketFilter model =
       model
 
     filtered =
-      List.filter (\rw -> compareSocketType rw.sockets minSockets GT && compareSocketType rw.sockets maxSockets LT) runewords
+      List.filter (\rw -> socketBounds minSockets maxSockets rw.sockets) runewords
   in
     { model | runewords = filtered }
 
@@ -166,7 +167,7 @@ applyFilters model =
   model |> applySearchFilter |> applySocketFilter
 
 
-renderRunewordsList : Model -> Html.Html
+renderRunewordsList : Model -> Html
 renderRunewordsList model =
   let
     { runewords, keywords, searchType } =
@@ -210,7 +211,7 @@ stFromString value =
       All
 
 
-renderSearchBar : Signal.Address Action -> Html.Html
+renderSearchBar : Signal.Address Action -> Html
 renderSearchBar address =
   div
     [ class "control is-horizontal has-addons" ]
@@ -237,102 +238,67 @@ renderSearchBar address =
 
 type SocketType
   = AnySockets
-  | Two
-  | Three
-  | Four
-  | Five
-  | Six
+  | Sockets Int
 
 
-socketTypeToString : SocketType -> String
-socketTypeToString socketType =
-  case socketType of
+minBounds : SocketType -> Int -> Bool
+minBounds min sockets =
+  case min of
     AnySockets ->
-      "Any"
+      True
 
-    Two ->
-      "2"
-
-    Three ->
-      "3"
-
-    Four ->
-      "4"
-
-    Five ->
-      "5"
-
-    Six ->
-      "6"
+    Sockets i ->
+      sockets >= i
 
 
-stringToSocketType : String -> SocketType
-stringToSocketType string =
-  case string of
-    "2" ->
-      Two
+maxBounds : SocketType -> Int -> Bool
+maxBounds max sockets =
+  case max of
+    AnySockets ->
+      True
 
-    "3" ->
-      Three
+    Sockets i ->
+      sockets <= i
 
-    "4" ->
-      Four
 
-    "5" ->
-      Five
+socketBounds : SocketType -> SocketType -> Int -> Bool
+socketBounds min max sockets =
+  minBounds min sockets && maxBounds max sockets
 
-    "6" ->
-      Six
+
+compareSocketType : String -> String -> Order
+compareSocketType a b =
+  if a == "Any" then
+    LT
+  else if b == "Any" then
+    GT
+  else
+    compare a b
+
+
+socketTypes : Dict String SocketType
+socketTypes =
+  Dict.fromList
+    [ ( "Any", AnySockets )
+    , ( "2", Sockets 2 )
+    , ( "3", Sockets 3 )
+    , ( "4", Sockets 4 )
+    , ( "5", Sockets 5 )
+    , ( "6", Sockets 6 )
+    ]
+
+
+getSocketType : String -> SocketType
+getSocketType key =
+  case (Dict.get key socketTypes) of
+    Just socketType ->
+      socketType
 
     _ ->
       AnySockets
 
 
-compareSocketType : Int -> SocketType -> Order -> Bool
-compareSocketType sockets socketType ord =
-  case ord of
-    GT ->
-      case socketType of
-        AnySockets ->
-          True
-
-        Two ->
-          sockets >= 2
-
-        Three ->
-          sockets >= 3
-
-        Four ->
-          sockets >= 4
-
-        Five ->
-          sockets >= 5
-
-        Six ->
-          sockets >= 6
-
-    _ ->
-      case socketType of
-        AnySockets ->
-          True
-
-        Two ->
-          sockets <= 2
-
-        Three ->
-          sockets <= 3
-
-        Four ->
-          sockets <= 4
-
-        Five ->
-          sockets <= 5
-
-        Six ->
-          sockets <= 6
-
-
-renderSocketFilter : Signal.Address Action -> String -> (SocketType -> Action) -> Html.Html
+renderSocketFilter : Signal.Address Action -> String -> (SocketType -> Action) -> Html
 renderSocketFilter address name action =
   div
     [ class "control is-horizontal" ]
@@ -345,15 +311,18 @@ renderSocketFilter address name action =
             [ class "select" ]
             [ select
                 [ class "input is-secondary"
-                , Events.on "change" Events.targetValue (\v -> Signal.message address (action (stringToSocketType v)))
+                , Events.on "change" Events.targetValue (\v -> Signal.message address (action (getSocketType v)))
                 ]
-                (List.map (\s -> option [] [ text (socketTypeToString s) ]) [ AnySockets, Two, Three, Four, Five, Six ])
+                (List.map
+                  (\s -> option [] [ text s ])
+                  (List.sortWith compareSocketType (Dict.keys socketTypes))
+                )
             ]
         ]
     ]
 
 
-renderSocketFilters : Signal.Address Action -> Html.Html
+renderSocketFilters : Signal.Address Action -> Html
 renderSocketFilters address =
   div
     []
@@ -362,7 +331,7 @@ renderSocketFilters address =
     ]
 
 
-renderFilters : Signal.Address Action -> Html.Html
+renderFilters : Signal.Address Action -> Html
 renderFilters address =
   form
     []
@@ -379,7 +348,7 @@ parseSearchKeywords query =
     Just (String.split " " query)
 
 
-renderHero : Html.Html
+renderHero : Html
 renderHero =
   section
     [ class "hero" ]
@@ -395,7 +364,7 @@ renderHero =
     ]
 
 
-renderFooter : Html.Html
+renderFooter : Html
 renderFooter =
   footer
     [ class "footer" ]
@@ -411,7 +380,7 @@ renderFooter =
     ]
 
 
-view : Signal.Address Action -> Model -> Html.Html
+view : Signal.Address Action -> Model -> Html
 view address model =
   div
     [ id "app-body" ]
@@ -463,7 +432,7 @@ app =
   StartApp.start { init = init, update = update, view = view, inputs = [] }
 
 
-main : Signal Html.Html
+main : Signal Html
 main =
   app.html
 
