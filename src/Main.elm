@@ -76,8 +76,11 @@ renderRuneword runeword =
             [ class "title is-3" ]
             [ text runeword.name ]
         , p
-            [ class "subtitle is-5" ]
+            [ class "subtitle is-5", style [ ( "margin-bottom", "5px" ) ] ]
             [ text (String.join " + " (List.map toString runeword.runes)) ]
+        , p
+            [ class "subtitle is-6" ]
+            [ text (String.join " | " (List.map toString runeword.itemTypes)) ]
         ]
     , div
         [ class "columns" ]
