@@ -117,8 +117,11 @@ applySearchFilter model =
           properties =
             (\rw -> String.join " " rw.properties)
 
+          sockets =
+            (\rw -> (toString rw.sockets) ++ "os")
+
           all =
-            (\rw -> String.join " " [ (name rw), (runes rw), (properties rw) ])
+            (\rw -> String.join " " [ (name rw), (runes rw), (properties rw), (sockets rw) ])
 
           searchFn =
             case searchType of
