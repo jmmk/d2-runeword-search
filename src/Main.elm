@@ -108,6 +108,12 @@ applySearchFilter model =
 
       Just keywords ->
         let
+          sockets =
+            (\rw -> (toString rw.sockets) ++ "os")
+
+          itemTypes =
+            (\rw -> String.join " " (List.map toString rw.itemTypes))
+
           name =
             (\rw -> rw.name)
 
@@ -117,11 +123,8 @@ applySearchFilter model =
           properties =
             (\rw -> String.join " " rw.properties)
 
-          sockets =
-            (\rw -> (toString rw.sockets) ++ "os")
-
           all =
-            (\rw -> String.join " " [ (name rw), (runes rw), (properties rw), (sockets rw) ])
+            (\rw -> String.join " " [ (name rw), (runes rw), (properties rw), (sockets rw), (itemTypes rw) ])
 
           searchFn =
             case searchType of
