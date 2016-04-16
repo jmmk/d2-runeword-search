@@ -221,10 +221,6 @@ renderSocketFilter address isChecked displayName socket =
     ]
 
 
-
--- , Events.on "change" Events.targetValue (\v -> Signal.message address (action (Sockets.fromString v)))
-
-
 renderSocketFilters : Signal.Address Action -> List Sockets -> Html
 renderSocketFilters address selectedSockets =
   div
@@ -316,7 +312,12 @@ toggleSocket selectedSockets toggleSocket =
   if List.member toggleSocket selectedSockets then
     List.filter (\s -> s /= toggleSocket) selectedSockets
   else
-    toggleSocket :: selectedSockets
+    case toggleSocket of
+      Sockets.AnySockets ->
+        [ Sockets.AnySockets ]
+
+      _ ->
+        toggleSocket :: List.filter (\s -> s /= Sockets.AnySockets) selectedSockets
 
 
 update : Action -> Model -> ( Model, Effects Action )

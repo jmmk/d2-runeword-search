@@ -47,7 +47,10 @@ matchSingle selected numSockets =
 
 match : List Sockets -> Int -> Bool
 match selectedSockets numSockets =
-  List.any (\selected -> matchSingle selected numSockets) selectedSockets
+  if List.isEmpty selectedSockets then
+    True
+  else
+    List.any (\selected -> matchSingle selected numSockets) selectedSockets
 
 
 fromString : String -> Sockets
