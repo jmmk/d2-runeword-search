@@ -13438,26 +13438,20 @@ Elm.Sockets.make = function (_elm) {
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
    var _op = {};
-   var maxBounds = F2(function (max,sockets) {
-      var _p0 = max;
+   var matchSingle = F2(function (selected,numSockets) {
+      var _p0 = selected;
       if (_p0.ctor === "AnySockets") {
             return true;
          } else {
-            return _U.cmp(sockets,_p0._0) < 1;
+            return _U.eq(_p0._0,numSockets);
          }
    });
-   var minBounds = F2(function (min,sockets) {
-      var _p1 = min;
-      if (_p1.ctor === "AnySockets") {
-            return true;
-         } else {
-            return _U.cmp(sockets,_p1._0) > -1;
-         }
-   });
-   var socketBounds = F3(function (min,max,sockets) {
-      return A2(minBounds,min,sockets) && A2(maxBounds,
-      max,
-      sockets);
+   var match = F2(function (selectedSockets,numSockets) {
+      return A2($List.any,
+      function (selected) {
+         return A2(matchSingle,selected,numSockets);
+      },
+      selectedSockets);
    });
    var compareSockets = F2(function (a,b) {
       return _U.eq(a,"Any") ? $Basics.LT : _U.eq(b,
@@ -13479,9 +13473,9 @@ Elm.Sockets.make = function (_elm) {
    compareSockets,
    $Dict.keys(sockets));
    var fromString = function (key) {
-      var _p2 = A2($Dict.get,key,sockets);
-      if (_p2.ctor === "Just") {
-            return _p2._0;
+      var _p1 = A2($Dict.get,key,sockets);
+      if (_p1.ctor === "Just") {
+            return _p1._0;
          } else {
             return AnySockets;
          }
@@ -13492,9 +13486,8 @@ Elm.Sockets.make = function (_elm) {
                                 ,sockets: sockets
                                 ,compareSockets: compareSockets
                                 ,displayList: displayList
-                                ,minBounds: minBounds
-                                ,maxBounds: maxBounds
-                                ,socketBounds: socketBounds
+                                ,matchSingle: matchSingle
+                                ,match: match
                                 ,fromString: fromString};
 };
 Elm.SearchType = Elm.SearchType || {};
@@ -13547,6 +13540,7 @@ Elm.Main.make = function (_elm) {
    var _U = Elm.Native.Utils.make(_elm),
    $Basics = Elm.Basics.make(_elm),
    $Debug = Elm.Debug.make(_elm),
+   $Dict = Elm.Dict.make(_elm),
    $Effects = Elm.Effects.make(_elm),
    $Html = Elm.Html.make(_elm),
    $Html$Attributes = Elm.Html.Attributes.make(_elm),
@@ -13563,6 +13557,17 @@ Elm.Main.make = function (_elm) {
    $String = Elm.String.make(_elm),
    $Task = Elm.Task.make(_elm);
    var _op = {};
+   var toggleSocket = F2(function (selectedSockets,toggleSocket) {
+      return A2($List.member,
+      toggleSocket,
+      selectedSockets) ? A2($List.filter,
+      function (s) {
+         return !_U.eq(s,toggleSocket);
+      },
+      selectedSockets) : A2($List._op["::"],
+      toggleSocket,
+      selectedSockets);
+   });
    var renderFooter = A2($Html.footer,
    _U.list([$Html$Attributes.$class("footer")]),
    _U.list([A2($Html.div,
@@ -13593,43 +13598,20 @@ Elm.Main.make = function (_elm) {
          case "ChangeSearchType": return {ctor: "_Tuple2"
                                          ,_0: _U.update(model,{searchType: _p0._0})
                                          ,_1: $Effects.none};
-         case "ChangeMinSockets": return {ctor: "_Tuple2"
-                                         ,_0: _U.update(model,{minSockets: _p0._0})
-                                         ,_1: $Effects.none};
          default: return {ctor: "_Tuple2"
-                         ,_0: _U.update(model,{maxSockets: _p0._0})
+                         ,_0: _U.update(model,
+                         {selectedSockets: A2(toggleSocket,
+                         model.selectedSockets,
+                         _p0._0)})
                          ,_1: $Effects.none};}
-   });
-   var renderSocketFilter = F2(function (address,action) {
-      return A2($Html.span,
-      _U.list([$Html$Attributes.$class("select")]),
-      _U.list([A2($Html.select,
-      _U.list([$Html$Attributes.$class("input is-secondary")
-              ,A3($Html$Events.on,
-              "change",
-              $Html$Events.targetValue,
-              function (v) {
-                 return A2($Signal.message,
-                 address,
-                 action($Sockets.fromString(v)));
-              })]),
-      A2($List.map,
-      function (s) {
-         return A2($Html.option,_U.list([]),_U.list([$Html.text(s)]));
-      },
-      $Sockets.displayList))]));
    });
    var applySocketFilter = function (model) {
       var _p1 = model;
       var runewords = _p1.runewords;
-      var minSockets = _p1.minSockets;
-      var maxSockets = _p1.maxSockets;
+      var selectedSockets = _p1.selectedSockets;
       var filtered = A2($List.filter,
       function (rw) {
-         return A3($Sockets.socketBounds,
-         minSockets,
-         maxSockets,
-         rw.sockets);
+         return A2($Sockets.match,selectedSockets,rw.sockets);
       },
       runewords);
       return _U.update(model,{runewords: filtered});
@@ -13657,10 +13639,24 @@ Elm.Main.make = function (_elm) {
                A2($List.map,$Basics.toString,rw.runes));
             };
             var name = function (rw) {    return rw.name;};
+            var itemTypes = function (rw) {
+               return A2($String.join,
+               " ",
+               A2($List.map,$Basics.toString,rw.itemTypes));
+            };
+            var sockets = function (rw) {
+               return A2($Basics._op["++"],
+               $Basics.toString(rw.sockets),
+               "os");
+            };
             var all = function (rw) {
                return A2($String.join,
                " ",
-               _U.list([name(rw),runes(rw),properties(rw)]));
+               _U.list([name(rw)
+                       ,runes(rw)
+                       ,properties(rw)
+                       ,sockets(rw)
+                       ,itemTypes(rw)]));
             };
             var searchFn = function () {
                var _p4 = searchType;
@@ -13768,39 +13764,50 @@ Elm.Main.make = function (_elm) {
       _U.list([]),
       A2($List.map,renderRuneword,filtered))]))]));
    };
-   var ChangeMaxSockets = function (a) {
-      return {ctor: "ChangeMaxSockets",_0: a};
+   var ToggleSocket = function (a) {
+      return {ctor: "ToggleSocket",_0: a};
    };
-   var ChangeMinSockets = function (a) {
-      return {ctor: "ChangeMinSockets",_0: a};
-   };
-   var renderSocketFilters = function (address) {
+   var renderSocketFilter = F4(function (address,
+   isChecked,
+   displayName,
+   socket) {
+      return A2($Html.div,
+      _U.list([$Html$Attributes.$class("control")]),
+      _U.list([A2($Html.label,
+      _U.list([$Html$Attributes.$class("checkbox")]),
+      _U.list([A2($Html.input,
+              _U.list([$Html$Attributes.type$("checkbox")
+                      ,$Html$Attributes.checked(isChecked)
+                      ,A3($Html$Events.on,
+                      "change",
+                      $Html$Events.targetChecked,
+                      function (_p6) {
+                         return A2($Signal.message,address,ToggleSocket(socket));
+                      })]),
+              _U.list([]))
+              ,$Html.text(displayName)]))]));
+   });
+   var renderSocketFilters = F2(function (address,
+   selectedSockets) {
       return A2($Html.div,
       _U.list([$Html$Attributes.$class("control")]),
       _U.list([A2($Html.label,
               _U.list([$Html$Attributes.$class("label")]),
               _U.list([$Html.text("Sockets")]))
               ,A2($Html.div,
-              _U.list([$Html$Attributes.$class("control is-horizontal")]),
-              _U.list([A2($Html.div,
-                      _U.list([$Html$Attributes.$class("control-label")]),
-                      _U.list([A2($Html.label,
-                      _U.list([$Html$Attributes.$class("label")]),
-                      _U.list([$Html.text("Min")]))]))
-                      ,A2($Html.div,
-                      _U.list([$Html$Attributes.$class("control")]),
-                      _U.list([A2(renderSocketFilter,address,ChangeMinSockets)]))
-                      ,A2($Html.div,
-                      _U.list([$Html$Attributes.$class("control-label")]),
-                      _U.list([A2($Html.label,
-                      _U.list([$Html$Attributes.$class("label")]),
-                      _U.list([$Html.text("Max")]))]))
-                      ,A2($Html.div,
-                      _U.list([$Html$Attributes.$class("control")]),
-                      _U.list([A2(renderSocketFilter,
-                      address,
-                      ChangeMaxSockets)]))]))]));
-   };
+              _U.list([]),
+              A2($List.map,
+              function (_p7) {
+                 var _p8 = _p7;
+                 var _p9 = _p8._1;
+                 return A4(renderSocketFilter,
+                 address,
+                 A2($List.member,_p9,selectedSockets),
+                 _p8._0,
+                 _p9);
+              },
+              $Dict.toList($Sockets.sockets)))]));
+   });
    var ChangeSearchType = function (a) {
       return {ctor: "ChangeSearchType",_0: a};
    };
@@ -13842,12 +13849,12 @@ Elm.Main.make = function (_elm) {
                       },
                       $SearchType.displayList))]))]))]));
    };
-   var renderFilters = function (address) {
+   var renderFilters = F2(function (address,model) {
       return A2($Html.form,
       _U.list([]),
       _U.list([renderSearchBar(address)
-              ,renderSocketFilters(address)]));
-   };
+              ,A2(renderSocketFilters,address,model.selectedSockets)]));
+   });
    var view = F2(function (address,model) {
       return A2($Html.div,
       _U.list([$Html$Attributes.id("app-body")]),
@@ -13864,14 +13871,13 @@ Elm.Main.make = function (_elm) {
                       ,A2($Html.div,
                       _U.list([$Html$Attributes.id("filters")
                               ,$Html$Attributes.$class("column is-half")]),
-                      _U.list([renderFilters(address)]))]))]))]))
+                      _U.list([A2(renderFilters,address,model)]))]))]))]))
               ,renderFooter]));
    });
    var initialModel = {keywords: $Maybe.Nothing
                       ,runewords: $Runewords.runewords
                       ,searchType: $SearchType.All
-                      ,minSockets: $Sockets.AnySockets
-                      ,maxSockets: $Sockets.AnySockets};
+                      ,selectedSockets: _U.list([$Sockets.AnySockets])};
    var init = {ctor: "_Tuple2",_0: initialModel,_1: $Effects.none};
    var app = $StartApp.start({init: init
                              ,update: update
@@ -13880,12 +13886,11 @@ Elm.Main.make = function (_elm) {
    var main = app.html;
    var runner = Elm.Native.Task.make(_elm).performSignal("runner",
    app.tasks);
-   var Model = F5(function (a,b,c,d,e) {
+   var Model = F4(function (a,b,c,d) {
       return {keywords: a
              ,runewords: b
              ,searchType: c
-             ,minSockets: d
-             ,maxSockets: e};
+             ,selectedSockets: d};
    });
    return _elm.Main.values = {_op: _op
                              ,Model: Model
@@ -13893,8 +13898,7 @@ Elm.Main.make = function (_elm) {
                              ,init: init
                              ,KeywordSearch: KeywordSearch
                              ,ChangeSearchType: ChangeSearchType
-                             ,ChangeMinSockets: ChangeMinSockets
-                             ,ChangeMaxSockets: ChangeMaxSockets
+                             ,ToggleSocket: ToggleSocket
                              ,renderProperties: renderProperties
                              ,renderAttributes: renderAttributes
                              ,renderRuneword: renderRuneword
@@ -13911,6 +13915,7 @@ Elm.Main.make = function (_elm) {
                              ,renderHero: renderHero
                              ,renderFooter: renderFooter
                              ,view: view
+                             ,toggleSocket: toggleSocket
                              ,update: update
                              ,app: app
                              ,main: main};
