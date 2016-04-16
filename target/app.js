@@ -13447,7 +13447,7 @@ Elm.Sockets.make = function (_elm) {
          }
    });
    var match = F2(function (selectedSockets,numSockets) {
-      return A2($List.any,
+      return $List.isEmpty(selectedSockets) ? true : A2($List.any,
       function (selected) {
          return A2(matchSingle,selected,numSockets);
       },
@@ -13558,15 +13558,25 @@ Elm.Main.make = function (_elm) {
    $Task = Elm.Task.make(_elm);
    var _op = {};
    var toggleSocket = F2(function (selectedSockets,toggleSocket) {
-      return A2($List.member,
-      toggleSocket,
-      selectedSockets) ? A2($List.filter,
-      function (s) {
-         return !_U.eq(s,toggleSocket);
-      },
-      selectedSockets) : A2($List._op["::"],
-      toggleSocket,
-      selectedSockets);
+      if (A2($List.member,toggleSocket,selectedSockets))
+      return A2($List.filter,
+         function (s) {
+            return !_U.eq(s,toggleSocket);
+         },
+         selectedSockets); else {
+            var _p0 = toggleSocket;
+            if (_p0.ctor === "AnySockets") {
+                  return _U.list([$Sockets.AnySockets]);
+               } else {
+                  return A2($List._op["::"],
+                  toggleSocket,
+                  A2($List.filter,
+                  function (s) {
+                     return !_U.eq(s,$Sockets.AnySockets);
+                  },
+                  selectedSockets));
+               }
+         }
    });
    var renderFooter = A2($Html.footer,
    _U.list([$Html$Attributes.$class("footer")]),
@@ -13590,25 +13600,25 @@ Elm.Main.make = function (_elm) {
       query));
    };
    var update = F2(function (action,model) {
-      var _p0 = action;
-      switch (_p0.ctor)
+      var _p1 = action;
+      switch (_p1.ctor)
       {case "KeywordSearch": return {ctor: "_Tuple2"
-                                    ,_0: _U.update(model,{keywords: parseSearchKeywords(_p0._0)})
+                                    ,_0: _U.update(model,{keywords: parseSearchKeywords(_p1._0)})
                                     ,_1: $Effects.none};
          case "ChangeSearchType": return {ctor: "_Tuple2"
-                                         ,_0: _U.update(model,{searchType: _p0._0})
+                                         ,_0: _U.update(model,{searchType: _p1._0})
                                          ,_1: $Effects.none};
          default: return {ctor: "_Tuple2"
                          ,_0: _U.update(model,
                          {selectedSockets: A2(toggleSocket,
                          model.selectedSockets,
-                         _p0._0)})
+                         _p1._0)})
                          ,_1: $Effects.none};}
    });
    var applySocketFilter = function (model) {
-      var _p1 = model;
-      var runewords = _p1.runewords;
-      var selectedSockets = _p1.selectedSockets;
+      var _p2 = model;
+      var runewords = _p2.runewords;
+      var selectedSockets = _p2.selectedSockets;
       var filtered = A2($List.filter,
       function (rw) {
          return A2($Sockets.match,selectedSockets,rw.sockets);
@@ -13622,12 +13632,12 @@ Elm.Main.make = function (_elm) {
       $String.toLower(searchText));
    });
    var applySearchFilter = function (model) {
-      var _p2 = model;
-      var keywords = _p2.keywords;
-      var runewords = _p2.runewords;
-      var searchType = _p2.searchType;
-      var _p3 = keywords;
-      if (_p3.ctor === "Nothing") {
+      var _p3 = model;
+      var keywords = _p3.keywords;
+      var runewords = _p3.runewords;
+      var searchType = _p3.searchType;
+      var _p4 = keywords;
+      if (_p4.ctor === "Nothing") {
             return model;
          } else {
             var properties = function (rw) {
@@ -13659,8 +13669,8 @@ Elm.Main.make = function (_elm) {
                        ,itemTypes(rw)]));
             };
             var searchFn = function () {
-               var _p4 = searchType;
-               switch (_p4.ctor)
+               var _p5 = searchType;
+               switch (_p5.ctor)
                {case "Name": return name;
                   case "Runes": return runes;
                   case "Properties": return properties;
@@ -13672,7 +13682,7 @@ Elm.Main.make = function (_elm) {
                function (kw) {
                   return A2(keywordMatch,kw,searchFn(rw));
                },
-               _p3._0);
+               _p4._0);
             },
             runewords);
             return _U.update(model,{runewords: filtered});
@@ -13752,10 +13762,10 @@ Elm.Main.make = function (_elm) {
       var filtered = function (_) {
          return _.runewords;
       }(applyFilters(model));
-      var _p5 = model;
-      var runewords = _p5.runewords;
-      var keywords = _p5.keywords;
-      var searchType = _p5.searchType;
+      var _p6 = model;
+      var runewords = _p6.runewords;
+      var keywords = _p6.keywords;
+      var searchType = _p6.searchType;
       return A2($Html.div,
       _U.list([$Html$Attributes.$class("columns")]),
       _U.list([A2($Html.div,
@@ -13781,7 +13791,7 @@ Elm.Main.make = function (_elm) {
                       ,A3($Html$Events.on,
                       "change",
                       $Html$Events.targetChecked,
-                      function (_p6) {
+                      function (_p7) {
                          return A2($Signal.message,address,ToggleSocket(socket));
                       })]),
               _U.list([]))
@@ -13797,14 +13807,14 @@ Elm.Main.make = function (_elm) {
               ,A2($Html.div,
               _U.list([]),
               A2($List.map,
-              function (_p7) {
-                 var _p8 = _p7;
-                 var _p9 = _p8._1;
+              function (_p8) {
+                 var _p9 = _p8;
+                 var _p10 = _p9._1;
                  return A4(renderSocketFilter,
                  address,
-                 A2($List.member,_p9,selectedSockets),
-                 _p8._0,
-                 _p9);
+                 A2($List.member,_p10,selectedSockets),
+                 _p9._0,
+                 _p10);
               },
               $Dict.toList($Sockets.sockets)))]));
    });
