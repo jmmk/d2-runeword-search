@@ -35,29 +35,19 @@ displayList =
   List.sortWith compareSockets (Dict.keys sockets)
 
 
-minBounds : Sockets -> Int -> Bool
-minBounds min sockets =
-  case min of
+matchSingle : Sockets -> Int -> Bool
+matchSingle selected numSockets =
+  case selected of
     AnySockets ->
       True
 
     Sockets i ->
-      sockets >= i
+      i == numSockets
 
 
-maxBounds : Sockets -> Int -> Bool
-maxBounds max sockets =
-  case max of
-    AnySockets ->
-      True
-
-    Sockets i ->
-      sockets <= i
-
-
-socketBounds : Sockets -> Sockets -> Int -> Bool
-socketBounds min max sockets =
-  minBounds min sockets && maxBounds max sockets
+match : List Sockets -> Int -> Bool
+match selectedSockets numSockets =
+  List.any (\selected -> matchSingle selected numSockets) selectedSockets
 
 
 fromString : String -> Sockets

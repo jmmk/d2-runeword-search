@@ -2,7 +2,7 @@ module Main (..) where
 
 import StartApp
 import Html exposing (..)
-import Html.Attributes exposing (id, class, style, type')
+import Html.Attributes exposing (id, class, style, type', checked)
 import Html.Events as Events
 import Effects exposing (Effects, Never)
 import Task
@@ -18,8 +18,7 @@ type alias Model =
   { keywords : Maybe (List String)
   , runewords : List Runeword
   , searchType : SearchType
-  , minSockets : Sockets
-  , maxSockets : Sockets
+  , selectedSockets : List Sockets
   }
 
 
@@ -28,8 +27,7 @@ initialModel =
   { keywords = Nothing
   , runewords = runewords
   , searchType = SearchType.All
-  , minSockets = Sockets.AnySockets
-  , maxSockets = Sockets.AnySockets
+  , selectedSockets = [ Sockets.AnySockets ]
   }
 
 
@@ -41,8 +39,7 @@ init =
 type Action
   = KeywordSearch String
   | ChangeSearchType SearchType
-  | ChangeMinSockets Sockets
-  | ChangeMaxSockets Sockets
+  | ToggleSocket Sockets
 
 
 renderProperties : List String -> Html
@@ -146,11 +143,11 @@ applySearchFilter model =
 applySocketFilter : Model -> Model
 applySocketFilter model =
   let
-    { runewords, minSockets, maxSockets } =
+    { runewords, selectedSockets } =
       model
 
     filtered =
-      List.filter (\rw -> Sockets.socketBounds minSockets maxSockets rw.sockets) runewords
+      List.filter (\rw -> Sockets.match selectedSockets rw.sockets) runewords
   in
     { model | runewords = filtered }
 
@@ -201,44 +198,46 @@ renderSearchBar address =
     ]
 
 
-renderSocketFilter : Signal.Address Action -> (Sockets -> Action) -> Html
-renderSocketFilter address action =
-  span
-    [ class "select" ]
-    [ select
-        [ class "input is-secondary"
-        , Events.on "change" Events.targetValue (\v -> Signal.message address (action (Sockets.fromString v)))
+renderSocketFilter : Signal.Address Action -> Bool -> String -> Sockets -> Html
+renderSocketFilter address isChecked displayName socket =
+  div
+    [ class "control" ]
+    [ label
+        [ class "checkbox" ]
+        [ input
+            [ type' "checkbox"
+            , checked isChecked
+            , Events.on "change" Events.targetChecked (\_ -> Signal.message address (ToggleSocket socket))
+            ]
+            []
+        , text displayName
         ]
-        (List.map
-          (\s -> option [] [ text s ])
-          (Sockets.displayList)
-        )
     ]
 
 
-renderSocketFilters : Signal.Address Action -> Html
-renderSocketFilters address =
+
+-- , Events.on "change" Events.targetValue (\v -> Signal.message address (action (Sockets.fromString v)))
+
+
+renderSocketFilters : Signal.Address Action -> List Sockets -> Html
+renderSocketFilters address selectedSockets =
   div
     [ class "control" ]
     [ label
         [ class "label" ]
         [ text "Sockets" ]
     , div
-        [ class "control is-horizontal" ]
-        [ div [ class "control-label" ] [ label [ class "label" ] [ text "Min" ] ]
-        , div [ class "control" ] [ renderSocketFilter address ChangeMinSockets ]
-        , div [ class "control-label" ] [ label [ class "label" ] [ text "Max" ] ]
-        , div [ class "control" ] [ renderSocketFilter address ChangeMaxSockets ]
-        ]
+        []
+        (List.map (\( displayName, socket ) -> renderSocketFilter address (List.member socket selectedSockets) displayName socket) (Dict.toList Sockets.sockets))
     ]
 
 
-renderFilters : Signal.Address Action -> Html
-renderFilters address =
+renderFilters : Signal.Address Action -> Model -> Html
+renderFilters address model =
   form
     []
     [ renderSearchBar address
-    , renderSocketFilters address
+    , renderSocketFilters address model.selectedSockets
     ]
 
 
@@ -298,12 +297,20 @@ view address model =
                     [ renderRunewordsList model ]
                 , div
                     [ id "filters", class "column is-half" ]
-                    [ renderFilters address ]
+                    [ renderFilters address model ]
                 ]
             ]
         ]
     , renderFooter
     ]
+
+
+toggleSocket : List Sockets -> Sockets -> List Sockets
+toggleSocket selectedSockets toggleSocket =
+  if List.member toggleSocket selectedSockets then
+    List.filter (\s -> s /= toggleSocket) selectedSockets
+  else
+    toggleSocket :: selectedSockets
 
 
 update : Action -> Model -> ( Model, Effects Action )
@@ -315,11 +322,8 @@ update action model =
     ChangeSearchType searchType ->
       ( { model | searchType = searchType }, Effects.none )
 
-    ChangeMinSockets socketType ->
-      ( { model | minSockets = socketType }, Effects.none )
-
-    ChangeMaxSockets socketType ->
-      ( { model | maxSockets = socketType }, Effects.none )
+    ToggleSocket socket ->
+      ( { model | selectedSockets = toggleSocket model.selectedSockets socket }, Effects.none )
 
 
 app : StartApp.App Model
