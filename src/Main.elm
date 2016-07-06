@@ -1,10 +1,9 @@
-module Main (..) where
+module Main exposing (..)
 
-import StartApp
 import Html exposing (..)
+import Html.App as App
 import Html.Attributes exposing (id, class, style, type', checked)
 import Html.Events as Events
-import Effects exposing (Effects, Never)
 import Task
 import String
 import Runewords exposing (Runeword, runewords)
@@ -31,18 +30,18 @@ initialModel =
   }
 
 
-init : ( Model, Effects Action )
+init : ( Model, Cmd Msg )
 init =
-  ( initialModel, Effects.none )
+  ( initialModel, Cmd.none )
 
 
-type Action
+type Msg
   = KeywordSearch String
   | ChangeSearchType SearchType
   | ToggleSocket Sockets
 
 
-renderProperties : List String -> Html
+renderProperties : List String -> Html Msg
 renderProperties properties =
   div
     [ class "content" ]
@@ -52,7 +51,7 @@ renderProperties properties =
     ]
 
 
-renderAttributes : Runeword -> Html
+renderAttributes : Runeword -> Html Msg
 renderAttributes runeword =
   div
     [ class "content" ]
@@ -63,7 +62,7 @@ renderAttributes runeword =
     ]
 
 
-renderRuneword : Runeword -> Html
+renderRuneword : Runeword -> Html Msg
 renderRuneword runeword =
   div
     [ class "box" ]
@@ -163,7 +162,7 @@ applyFilters model =
   model |> applySearchFilter |> applySocketFilter
 
 
-renderRunewordsList : Model -> Html
+renderRunewordsList : Model -> Html Msg
 renderRunewordsList model =
   let
     { runewords, keywords, searchType } =
@@ -181,8 +180,8 @@ renderRunewordsList model =
       ]
 
 
-renderSearchBar : Signal.Address Action -> Html
-renderSearchBar address =
+renderSearchBar : Html Msg
+renderSearchBar =
   div
     [ class "control" ]
     [ label [ class "label" ] [ text "Search" ]
@@ -191,21 +190,21 @@ renderSearchBar address =
         [ input
             [ class "input is-primary"
             , type' "text"
-            , Events.on "input" Events.targetValue (\v -> Signal.message address (KeywordSearch v))
+            , Events.onInput (\v -> KeywordSearch v)
             ]
             []
         , span
             [ class "select" ]
             [ select
-                [ Events.on "change" Events.targetValue (\v -> Signal.message address (ChangeSearchType (SearchType.fromString v))) ]
+                [ Events.onInput (\v -> ChangeSearchType (SearchType.fromString v)) ]
                 (List.map (\t -> option [] [ text t ]) SearchType.displayList)
             ]
         ]
     ]
 
 
-renderSocketFilter : Signal.Address Action -> Bool -> String -> Sockets -> Html
-renderSocketFilter address isChecked displayName socket =
+renderSocketFilter : Bool -> String -> Sockets -> Html Msg
+renderSocketFilter isChecked displayName socket =
   div
     [ class "control" ]
     [ label
@@ -213,7 +212,7 @@ renderSocketFilter address isChecked displayName socket =
         [ input
             [ type' "checkbox"
             , checked isChecked
-            , Events.on "change" Events.targetChecked (\_ -> Signal.message address (ToggleSocket socket))
+            , Events.onCheck (\_ -> ToggleSocket socket)
             ]
             []
         , text displayName
@@ -221,8 +220,8 @@ renderSocketFilter address isChecked displayName socket =
     ]
 
 
-renderSocketFilters : Signal.Address Action -> List Sockets -> Html
-renderSocketFilters address selectedSockets =
+renderSocketFilters : List Sockets -> Html Msg
+renderSocketFilters selectedSockets =
   div
     [ class "control" ]
     [ label
@@ -230,16 +229,16 @@ renderSocketFilters address selectedSockets =
         [ text "Sockets" ]
     , div
         []
-        (List.map (\( displayName, socket ) -> renderSocketFilter address (List.member socket selectedSockets) displayName socket) (Dict.toList Sockets.sockets))
+        (List.map (\( displayName, socket ) -> renderSocketFilter (List.member socket selectedSockets) displayName socket) (Dict.toList Sockets.sockets))
     ]
 
 
-renderFilters : Signal.Address Action -> Model -> Html
-renderFilters address model =
+renderFilters : Model -> Html Msg
+renderFilters model =
   form
     []
-    [ renderSearchBar address
-    , renderSocketFilters address model.selectedSockets
+    [ renderSearchBar
+    , renderSocketFilters model.selectedSockets
     ]
 
 
@@ -251,7 +250,7 @@ parseSearchKeywords query =
     Just (String.split " " query)
 
 
-renderHero : Html
+renderHero : Html Msg
 renderHero =
   section
     [ class "hero" ]
@@ -267,7 +266,7 @@ renderHero =
     ]
 
 
-renderFooter : Html
+renderFooter : Html Msg
 renderFooter =
   footer
     [ class "footer" ]
@@ -283,8 +282,8 @@ renderFooter =
     ]
 
 
-view : Signal.Address Action -> Model -> Html
-view address model =
+view : Model -> Html Msg
+view model =
   div
     [ id "app-body" ]
     [ renderHero
@@ -299,7 +298,7 @@ view address model =
                     [ renderRunewordsList model ]
                 , div
                     [ id "filters", class "column is-half" ]
-                    [ renderFilters address model ]
+                    [ renderFilters model ]
                 ]
             ]
         ]
@@ -320,29 +319,18 @@ toggleSocket selectedSockets toggleSocket =
         toggleSocket :: List.filter (\s -> s /= Sockets.AnySockets) selectedSockets
 
 
-update : Action -> Model -> ( Model, Effects Action )
+update : Msg -> Model -> ( Model, Cmd Msg )
 update action model =
   case action of
     KeywordSearch query ->
-      ( { model | keywords = parseSearchKeywords query }, Effects.none )
+      ( { model | keywords = parseSearchKeywords query }, Cmd.none )
 
     ChangeSearchType searchType ->
-      ( { model | searchType = searchType }, Effects.none )
+      ( { model | searchType = searchType }, Cmd.none )
 
     ToggleSocket socket ->
-      ( { model | selectedSockets = toggleSocket model.selectedSockets socket }, Effects.none )
+      ( { model | selectedSockets = toggleSocket model.selectedSockets socket }, Cmd.none )
 
 
-app : StartApp.App Model
-app =
-  StartApp.start { init = init, update = update, view = view, inputs = [] }
-
-
-main : Signal Html
-main =
-  app.html
-
-
-port runner : Signal (Task.Task Never ())
-port runner =
-  app.tasks
+main = App.program
+    { init = init, update = update, view = view, subscriptions = \_ -> Sub.none }

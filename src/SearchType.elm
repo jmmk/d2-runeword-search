@@ -1,4 +1,4 @@
-module SearchType (..) where
+module SearchType exposing (..)
 
 import Dict exposing (Dict)
 

@@ -1,4 +1,4 @@
-module Runewords (..) where
+module Runewords exposing (..)
 
 import Patch exposing (Patch(..))
 
